@@ -3,12 +3,17 @@ import { StyleSheet, Text, View } from "react-native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback } from "react";
+import Splashscreen from "./components/SplashScreen";
+import IntroScreen from "./components/IntroScreen";
+import { white } from "./components/styles/typography";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    Baskerville: require("./assets/LibreBaskerville-Regular.ttf"),
+    Baskerville: require("./assets/fonts/LibreBaskerville-Regular.ttf"),
+    AGBook: require("./assets/fonts/AVGARDN_2.ttf"),
+    AGBold: require("./assets/fonts/AVGARDD_2.ttf"),
   });
 
   const onLayoutRootView = useCallback(async () => {
@@ -24,21 +29,8 @@ export default function App() {
     <View onLayout={onLayoutRootView} style={styles.container}>
       <StatusBar style="light" />
       <View style={styles.logo}>
-        <Text>
-          <Text style={styles.textGrey}>The </Text>
-          <Text style={styles.textBlack}>Met</Text>
-        </Text>
-        <Text>
-          <Text style={styles.textGrey}>ropolitan</Text>
-        </Text>
-        <Text>
-          <Text style={styles.textBlack}>Opera</Text>
-        </Text>
+        {!fontsLoaded ? <Splashscreen /> : <IntroScreen />}
       </View>
-      {/* <View style={styles.headerContainer}>
-        <Text style={styles.subheader}>IL</Text>
-        <Text style={styles.heading}>TROVATORE</Text>
-      </View> */}
     </View>
   );
 }
@@ -50,12 +42,12 @@ const styles = StyleSheet.create({
   subheader: {
     fontFamily: "Baskerville",
     fontSize: 29.97,
-    color: "#eee",
+    color: white,
   },
   heading: {
     fontFamily: "Baskerville",
     fontSize: 48.5,
-    color: "#eee",
+    color: white,
   },
   textGrey: {
     color: "#999",
@@ -63,7 +55,7 @@ const styles = StyleSheet.create({
     fontFamily: "Baskerville",
   },
   textBlack: {
-    color: "#eee",
+    color: white,
     fontSize: 30,
     fontFamily: "Baskerville",
   },
@@ -77,7 +69,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: "#232323",
+    backgroundColor: "#091127",
     alignItems: "center",
     justifyContent: "center",
   },
