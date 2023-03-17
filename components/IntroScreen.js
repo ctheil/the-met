@@ -4,18 +4,24 @@ import { Image } from "expo-image";
 import logo from "../assets/images/identity__init--trans.svg";
 import { useState } from "react";
 import EventScreen from "./EventScreen";
+import EventScreenTwo from "./EventScreenTwo";
 
 const IntroScreen = () => {
   const [open, setOpen] = useState(false);
   return (
     <>
       {open ? (
-        <EventScreen
+        <EventScreenTwo
           onClose={() => {
-            setOpen(false);
+            setOpen(!open);
           }}
         />
       ) : (
+        // <EventScreen
+        //   onClose={() => {
+        //     setOpen(false);
+        //   }}
+        // />
         <View style={styles.wrapper}>
           <View style={styles.mainImage}>
             <Image
