@@ -3,6 +3,7 @@ import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { grey, red, white } from "./styles/typography";
+import art from "../assets/images/trov-art.svg";
 
 export default function EventScreenTwo() {
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -25,14 +26,12 @@ export default function EventScreenTwo() {
         </View>
         <View style={styles.imageBox}>
           <Image
-            source={require("../assets/Artboard 1v2.png")}
-            contentFit="cover"
+            style={styles.svgImage}
+            source={art}
             transition={1000}
-            onLoad={() => {
-              setImageLoaded(true);
-            }}
+            placeholder="Art"
+            contentFit="contain"
           />
-          {!imageLoaded && <Text>Loading image</Text>}
         </View>
         <View style={styles.section}>
           <View style={styles.body}>
@@ -139,11 +138,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#eee",
     // height: 56,
-    alignItems: "center",
+    alignContent: "center",
     justifyContent: "center",
   },
-  image: {
+  svgImage: {
     flex: 1,
-    width: "100%",
+    width: 100,
   },
 });
