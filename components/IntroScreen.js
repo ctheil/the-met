@@ -1,34 +1,52 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { red, white } from "./styles/typography";
 import { Image } from "expo-image";
 import logo from "../assets/images/identity__init--trans.svg";
+import { useState } from "react";
+import EventScreen from "./EventScreen";
 
 const IntroScreen = () => {
+  const [open, setOpen] = useState(false);
   return (
-    <View style={styles.wrapper}>
-      <View style={styles.mainImage}>
-        <Image
-          source="https://www.metopera.org/globalassets/season/2022-23/traviata-la/1600x685/1600x685-traviata2.jpg"
-          contentFit="cover"
-          transition={1000}
-          style={styles.image}
-          contentPosition="center"
+    <>
+      {open ? (
+        <EventScreen
+          onClose={() => {
+            setOpen(false);
+          }}
         />
-      </View>
-      <View style={styles.container}>
-        <Image
-          style={styles.image}
-          source={logo}
-          transition={1000}
-          placeholder="Identity"
-          contentFit="contain"
-        />
-      </View>
-      {/* <Text style={[styles.subHead, styles.heading]}>IL</Text>
+      ) : (
+        <View style={styles.wrapper}>
+          <View style={styles.mainImage}>
+            <Image
+              source="https://www.metopera.org/globalassets/season/2022-23/traviata-la/1600x685/1600x685-traviata2.jpg"
+              contentFit="cover"
+              transition={1000}
+              style={styles.image}
+              contentPosition="center"
+            />
+          </View>
+          <TouchableOpacity
+            onPress={() => {
+              setOpen(!open);
+            }}
+            style={styles.container}
+          >
+            <Image
+              style={styles.image}
+              source={logo}
+              transition={1000}
+              placeholder="Identity"
+              contentFit="contain"
+            />
+          </TouchableOpacity>
+          {/* <Text style={[styles.subHead, styles.heading]}>IL</Text>
       <Text style={[styles.heading, styles.mainHeading, styles.red]}>
-        TROVATORE
-      </Text> */}
-    </View>
+      TROVATORE
+    </Text> */}
+        </View>
+      )}
+    </>
   );
 };
 

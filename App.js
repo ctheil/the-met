@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback } from "react";
@@ -28,9 +28,9 @@ export default function App() {
   return (
     <View onLayout={onLayoutRootView} style={styles.container}>
       <StatusBar style="light" />
-      <View style={styles.logo}>
+      <SafeAreaView style={styles.logo}>
         {!fontsLoaded ? <Splashscreen /> : <IntroScreen />}
-      </View>
+      </SafeAreaView>
     </View>
   );
 }
