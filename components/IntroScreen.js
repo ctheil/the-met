@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { red, white } from "./styles/typography";
+import { red, white } from "./styles/typography-styles";
 import { Image } from "expo-image";
 import logo from "../assets/images/identity__init--trans.svg";
 import { useState } from "react";

@@ -6,7 +6,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
 } from "react-native";
-import { red, white } from "./styles/typography";
+import { red, white } from "./styles/typography-styles";
 
 const synopsis =
   "An extraordinary cast came together for the first Live in HD transmission of the Met’s 2015–16 season. Anna Netrebko is Leonora, the young noblewoman at the center of the story, who is in love with the troubadour of the title—tenor Yonghoon Lee—but also pursued by Count di Luna, sung by the great Dmitri Hvorostovsky. Dolora Zajick completes the quartet of principals in her signature role of Azucena, the mysterious Gypsy woman who sets the dramatic events in motion. Marco Armiliato conducts David McVicar’s Goya-inspired production.";

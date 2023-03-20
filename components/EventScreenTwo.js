@@ -2,7 +2,7 @@ import { Image } from "expo-image";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-import { grey, red, white } from "./styles/typography";
+import { grey, red, white } from "./styles/typography-styles";
 import art from "../assets/images/trov-art.svg";
 
 export default function EventScreenTwo() {
