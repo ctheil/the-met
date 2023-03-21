@@ -38,15 +38,21 @@ const styles = StyleSheet.create({
     fontWeight: 900,
   },
   h2: {
-    fontFamily: "AGMedium",
-    marginBottom: 14.8,
+    fontFamily: "AGBold",
+    // marginBottom: 14.8,
     fontSize: 21,
     color: colors.font,
+  },
+  h3: {
+    fontFamily: "AGBook",
+    // marginBottom: 14.8,
+    fontSize: 21,
+    color: colors.red,
   },
   cta: {
     fontFamily: "AGMedium",
     fontSize: 21,
-    color: colors.red,
+    color: colors.bg,
     paddingVertical: 8,
   },
   em: {

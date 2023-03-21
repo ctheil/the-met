@@ -6,5 +6,5 @@ export const colors = {
 };
 
 export const padding = {
-  mainHorizontal: 36,
+  mainHorizontal: 24,
 };

@@ -25,6 +25,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     borderBottomColor: colors.font,
     borderBottomWidth: 4,
+    backgroundColor: colors.bg,
+    zIndex: 1,
   },
 });
 export default Heading;

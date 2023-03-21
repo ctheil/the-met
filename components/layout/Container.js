@@ -1,17 +1,29 @@
 import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 import { colors, padding } from "../styles/styles";
 
-const Container = ({ children }) => {
+const Container = ({ children, handleScroll }) => {
   return (
-    <ScrollView style={styles.main}>
+    <ScrollView
+      // fadingEdgeLength={1}
+      style={styles.main}
+      // invertStickyHeaders={true}
+      // StickyHeaderComponent={<Fade />}
+      // stickyHeaderIndices={[0]}
+    >
       {/* <SafeAreaView> */}
       <View>{children}</View>
+
+      <View style={styles.spacer} />
+
       {/* </SafeAreaView> */}
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  spacer: {
+    paddingBottom: 150,
+  },
   main: {
     backgroundColor: colors.bg,
     width: "100%",

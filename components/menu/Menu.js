@@ -4,33 +4,65 @@ import Typography from "../Typography";
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 
-export const Menu = ({ children }) => {
+export const Menu = ({ children, style }) => {
   const [selected, setSelected] = useState(null);
   const handleSelect = (index) => {
     setSelected(index);
   };
-  return <View style={styles.container}>{children}</View>;
+  return <View style={[styles.container, style]}>{children}</View>;
 };
-export const MenuItem = ({ children, index, component }) => {
+export const MenuItem = ({
+  children,
+  index,
+  component,
+  variant,
+  primary,
+  secondary,
+}) => {
   const [pressed, setPressed] = useState(false);
   const handlePress = () => {
     setPressed(!pressed);
   };
-  return (
-    <>
-      <TouchableOpacity onPress={handlePress} style={styles.item}>
-        <Typography variant={pressed ? "selectedMenuItem" : "menuItem"}>
-          {children}
-        </Typography>
+  if (variant === "sub") {
+    return (
+      <TouchableOpacity
+        style={[
+          styles.item,
+          index === 0 && {
+            borderTopColor: colors.font,
+            borderTopWidth: 1,
+          },
+        ]}
+        onPress={handlePress}
+      >
+        <View>
+          <Typography variant={"h2"}>{primary}</Typography>
+          <Typography variant={"h3"}>{secondary}</Typography>
+        </View>
         <Ionicons
           name={pressed ? "remove" : "add"}
           size={36}
           color={colors.font}
         />
       </TouchableOpacity>
-      {pressed && component}
-    </>
-  );
+    );
+  } else {
+    return (
+      <>
+        <TouchableOpacity onPress={handlePress} style={styles.item}>
+          <Typography variant={pressed ? "selectedMenuItem" : "menuItem"}>
+            {children}
+          </Typography>
+          <Ionicons
+            name={pressed ? "remove" : "add"}
+            size={36}
+            color={colors.font}
+          />
+        </TouchableOpacity>
+        {pressed && component}
+      </>
+    );
+  }
 };
 
 const styles = StyleSheet.create({
@@ -44,10 +76,14 @@ const styles = StyleSheet.create({
   item: {
     paddingHorizontal: padding.mainHorizontal / 2,
     borderBottomColor: colors.font,
+    // borderTopColor: colors.font,
     borderBottomWidth: 1,
+    // borderTopWidth: 1,
     paddingVertical: 8,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    backgroundColor: colors.bg,
+    zIndex: 1,
   },
 });
