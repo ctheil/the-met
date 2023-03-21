@@ -1,5 +1,5 @@
 import { Image } from "expo-image";
-import { Animated, StyleSheet, Text, View } from "react-native";
+import { Animated, Easing, StyleSheet, Text, View } from "react-native";
 import { colors, padding } from "./styles/styles";
 import Typography, { Span } from "./Typography";
 import imageOne from "../assets/images/Group_Swords_Trovatore_2271-s.jpg";
@@ -10,24 +10,63 @@ import { useEffect, useRef } from "react";
 import Divider from "./layout/Divider";
 
 const Synopsis = () => {
-  const progress = useRef(new Animated.Value(0.5)).current;
-  const opacity = useRef(new Animated.Value(0)).current;
-  const height = useRef(new Animated.Value(-1600)).current;
+  const translate = useRef(new Animated.Value(-20)).current;
+  const opacity = useRef(new Animated.Value(0.9)).current;
+  const height = useRef(new Animated.Value(-40)).current;
+  const scale = useRef(new Animated.Value(0.95)).current;
+  const width = useRef(new Animated.Value(90)).current;
 
   useEffect(() => {
-    Animated.spring(progress, { toValue: 1, useNativeDriver: true }).start();
-    Animated.spring(height, { toValue: 0, useNativeDriver: true }).start();
-    Animated.timing(opacity, { toValue: 1, useNativeDriver: true }).start();
-  }, []);
+    Animated.timing(translate, {
+      toValue: 0,
+      duration: 100,
+      // easing: Easing.inOut(),
+      useNativeDriver: true,
+    }).start();
+    Animated.stagger(200, [
+      Animated.spring(height, {
+        toValue: 0,
+        duration: 100,
 
+        useNativeDriver: true,
+      }),
+      Animated.timing(opacity, {
+        toValue: 1,
+        duration: 100,
+        useNativeDriver: true,
+      }),
+      Animated.timing(scale, {
+        toValue: 1,
+        duration: 100,
+        // delay: 300,
+        // easing: Easing.back(),
+        // delay: 3000,
+        useNativeDriver: true,
+      }),
+      Animated.timing(width, {
+        toValue: 100,
+        duration: 100,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, []);
   return (
     <Animated.View
       style={[
         styles.container,
-        { opacity: progress, transform: [{ translateY: height }] },
+
+        {
+          opacity: opacity,
+          // transform: [{ scale: scale }, { translateX: height }],
+        },
       ]}
     >
-      <View style={styles.heading}>
+      <Animated.View
+        style={[
+          [styles.heading],
+          { transform: [{ translateY: translate }, { scale: scale }] },
+        ]}
+      >
         <Text
           style={[
             styles.altFont,
@@ -47,9 +86,29 @@ const Synopsis = () => {
         >
           Duel
         </Text>
-      </View>
-      <View style={styles.imageBox}>
-        <Image source={imageOne} width={"100%"} height={900} />
+      </Animated.View>
+      <Animated.View
+        style={[
+          styles.imageBox,
+
+          {
+            transform: [{ translateY: height }, { scale: scale }],
+            // width: width,
+          },
+        ]}
+      >
+        <Image
+          style={{
+            borderTopWidth: 10,
+            borderColor: colors.red,
+            borderWidth: 0,
+          }}
+          transition={900}
+          source={imageOne}
+          width={"100%"}
+          height={900}
+        />
+
         <View style={styles.caption}>
           <Typography variant="caption">
             Yonghoon Lee as Manrico at the Met: Il Trovatore (2016).
@@ -58,7 +117,7 @@ const Synopsis = () => {
             Photo: Marty Sohl/Metropolitan Opera.
           </Typography>
         </View>
-      </View>
+      </Animated.View>
       <Animated.View style={[styles.p, { opacity: opacity }]}>
         <Typography variant="p">
           <Span variant="p" fontStyle="bold">
@@ -299,6 +358,7 @@ const styles = StyleSheet.create({
   imageBox: {
     marginHorizontal: -padding.mainHorizontal * 2,
     marginBottom: 36,
+    overflow: "hidden",
   },
   caption: {
     marginTop: 8,

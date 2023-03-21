@@ -1,8 +1,21 @@
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import {
+  Animated,
+  LayoutAnimation,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { colors, padding } from "../styles/styles";
 import Typography from "../Typography";
 import { Ionicons } from "@expo/vector-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
+
+const toggleItem = () => {
+  LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+  // setExpanded(!expanded)
+};
 
 export const Menu = ({ children, style }) => {
   const [selected, setSelected] = useState(null);
@@ -18,33 +31,50 @@ export const MenuItem = ({
   variant,
   primary,
   secondary,
+  animation,
+  open,
+  delay,
 }) => {
   const [pressed, setPressed] = useState(false);
   const handlePress = () => {
     setPressed(!pressed);
+    toggleItem();
   };
+  useEffect(() => {
+    if (open) {
+      if (delay) {
+        setTimeout(() => {
+          setPressed(true);
+          toggleItem();
+        }, 250);
+      }
+    }
+  }, []);
   if (variant === "sub") {
     return (
-      <TouchableOpacity
-        style={[
-          styles.item,
-          index === 0 && {
-            borderTopColor: colors.font,
-            borderTopWidth: 1,
-          },
-        ]}
-        onPress={handlePress}
-      >
-        <View>
-          <Typography variant={"h2"}>{primary}</Typography>
-          <Typography variant={"h3"}>{secondary}</Typography>
-        </View>
-        <Ionicons
-          name={pressed ? "remove" : "add"}
-          size={36}
-          color={colors.font}
-        />
-      </TouchableOpacity>
+      <>
+        <AnimatedTouchable
+          style={[
+            styles.item,
+            index === 0 && {
+              borderTopColor: colors.font,
+              borderTopWidth: 1,
+            },
+          ]}
+          onPress={handlePress}
+        >
+          <View>
+            <Typography variant={"h2"}>{primary}</Typography>
+            <Typography variant={"h3"}>{secondary}</Typography>
+          </View>
+          <Ionicons
+            name={pressed ? "remove" : "add"}
+            size={36}
+            color={colors.font}
+          />
+        </AnimatedTouchable>
+        {pressed && component}
+      </>
     );
   } else {
     return (
