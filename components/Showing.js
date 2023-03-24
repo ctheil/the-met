@@ -120,6 +120,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     gap: 6,
+    flex: 1,
   },
   statText: {
     fontFamily: "AGBold",
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
   },
   container: {
-    // paddingHorizontal: padding.mainHorizontal,
+    // paddingHorizontal: -30,
     paddingVertical: 24,
     flex: 1,
     flexDirection: "row",
@@ -193,6 +194,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     flexDirection: "row",
     gap: 16,
+    // flex: 0.5,
     // alignItems: "center",
     // justifyContent: "flex-start",
   },

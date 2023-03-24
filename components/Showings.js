@@ -21,7 +21,7 @@ const Showings = () => {
       // delay: 20,
       useNativeDriver: true,
     }).start();
-    Animated.stagger(20, [
+    Animated.stagger(200, [
       Animated.spring(transition, {
         toValue: 0,
         delay: 250,
@@ -86,7 +86,7 @@ const Showings = () => {
 const styles = StyleSheet.create({
   container: {
     zIndex: 0,
-    paddingHorizontal: padding.mainHorizontal * 2,
+    paddingHorizontal: padding.mainHorizontal + padding.mainHorizontal / 2,
   },
 });
 

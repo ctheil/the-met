@@ -103,7 +103,7 @@ const Synopsis = () => {
             borderColor: colors.red,
             borderWidth: 0,
           }}
-          transition={900}
+          transition={250}
           source={imageOne}
           width={"100%"}
           height={900}
