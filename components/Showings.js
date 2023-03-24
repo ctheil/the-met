@@ -10,6 +10,7 @@ const Showings = () => {
   const opacity = useRef(new Animated.Value(0)).current;
   const transition = useRef(new Animated.Value(-10)).current;
   const transitionTwo = useRef(new Animated.Value(-12)).current;
+
   useEffect(() => {
     Animated.spring(progress, { toValue: 1, useNativeDriver: true }).start();
     Animated.spring(height, { toValue: 0, useNativeDriver: true }).start();
