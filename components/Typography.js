@@ -7,10 +7,12 @@ export const Span = ({ variant, fontStyle, children }) => {
 };
 const Typography = (props) => {
   // const [variant, fontSize, color] = props;
+  const mode = props.mode || "light";
   const { variant } = props;
   return (
     <Text
       style={[
+        props.style,
         styles[variant],
         {
           fontFamily:
@@ -19,6 +21,7 @@ const Typography = (props) => {
               : styles[variant].fontFamily,
           color: props.color || styles[variant].color,
           fontSize: props.fontSize || styles[variant].fontSize,
+          textTransform: props.textTransform || styles[variant].textTransform,
         },
       ]}
     >
@@ -64,7 +67,7 @@ const styles = StyleSheet.create({
   p: {
     fontFamily: "AGMedium",
     fontSize: 13,
-    color: colors.grey,
+    // color: mode === "light" ? colors.grey : colors.grey100,
     lineHeight: 22,
   },
   menuItem: {

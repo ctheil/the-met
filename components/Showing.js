@@ -61,7 +61,7 @@ const Showing = ({ variant }) => {
       </View>
       <View style={styles.cta}>
         <View style={styles.headingBox}>
-          <Text style={[styles.headingAlt, { justifySelf: "flex-start" }]}>
+          <Text style={[styles.headingAlt]}>
             {variant === 2 ? "Saturday" : "Friday"}
           </Text>
           <Typography fontSize={34} color={colors.font} variant="h1">

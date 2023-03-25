@@ -34,10 +34,20 @@ export const MenuItem = ({
   animation,
   open,
   delay,
+  handlePress,
+  close,
 }) => {
   const [pressed, setPressed] = useState(false);
-  const handlePress = () => {
+
+  useEffect(() => {
+    if (close) {
+      setPressed(false);
+    }
+  }, [close]);
+
+  const handleTap = () => {
     setPressed(!pressed);
+    handlePress(index, pressed);
     toggleItem();
   };
   useEffect(() => {
@@ -61,7 +71,7 @@ export const MenuItem = ({
               borderTopWidth: 1,
             },
           ]}
-          onPress={handlePress}
+          onPress={handleTap}
         >
           <View>
             <Typography variant={"h2"}>{primary}</Typography>
@@ -79,7 +89,30 @@ export const MenuItem = ({
   } else {
     return (
       <>
-        <TouchableOpacity onPress={handlePress} style={styles.item}>
+        <TouchableOpacity
+          onLayout={(e) => {}}
+          onPress={handleTap}
+          style={[styles.item, ,]}
+        >
+          {pressed && (
+            <View
+              style={{
+                shadowColor: "#000",
+                shadowOffset: { width: 0, height: 10 },
+                shadowOpacity: 0.05,
+                shadowRadius: 3,
+                backgroundColor: colors.bg,
+                // height: 50,
+                position: "absolute",
+                bottom: -1,
+                left: -10,
+                right: -10,
+                top: 0,
+
+                // shadowRadius: 50,
+              }}
+            />
+          )}
           <Typography variant={pressed ? "selectedMenuItem" : "menuItem"}>
             {children}
           </Typography>

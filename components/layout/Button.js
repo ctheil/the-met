@@ -5,7 +5,7 @@ import Typography from "../Typography";
 
 const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 
-const Button = ({ children }) => {
+const Button = ({ children, size, onPress }) => {
   const translate = useRef(new Animated.Value(1)).current;
   const scale = useRef(new Animated.Value(1)).current;
 
@@ -25,10 +25,19 @@ const Button = ({ children }) => {
   return (
     <AnimatedTouchable
       onPressIn={handlePressIn}
-      onPress={() => alert("Thank you for your purchase!")}
+      onPress={onPress ? onPress : () => alert("Thank you for your purchase!")}
       style={[
         styles.button,
         { transform: [{ translateY: translate }, { scale: scale }] },
+        size === "small"
+          ? {
+              flex: 0.25,
+              borderTopRightRadius: 0,
+              borderBottomRightRadius: 0,
+              borderRightWidth: 2,
+              borderColor: colors.bg,
+            }
+          : { borderTopLeftRadius: 0, borderBottomLeftRadius: 0 },
       ]}
     >
       <Typography variant="cta">{children}</Typography>
@@ -38,7 +47,9 @@ const Button = ({ children }) => {
 
 const styles = StyleSheet.create({
   button: {
-    width: "100%",
+    // width: "100%",
+    flex: 1,
+    height: 55,
     alignItems: "center",
     backgroundColor: colors.red,
     // paddingHorizontal: 1,
