@@ -1,139 +1,156 @@
-import { useState } from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  SafeAreaView,
-  TouchableOpacity,
-} from "react-native";
-import { red, white } from "./styles/typography-styles";
+import { StatusBar } from "expo-status-bar";
+import { Animated, Easing, StyleSheet, View } from "react-native";
+import Button from "./layout/Button";
+import Container from "./layout/Container";
+import Fade from "./layout/Fade";
+import Heading from "./layout/Heading";
+import { StatusBarContext, StatusBarProvider } from "./lib/context";
+import { Menu } from "./menu/Menu";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import Synopsis from "./Synopsis";
+import Showings from "./Showings";
+import Cast from "./Cast";
+import Creators from "./Creators";
+import { useContext, useEffect, useRef, useState } from "react";
+import { colors, padding } from "./styles/styles";
+import { scrollPosition } from "./lib/scrollPosition";
 
-const synopsis =
-  "An extraordinary cast came together for the first Live in HD transmission of the Met’s 2015–16 season. Anna Netrebko is Leonora, the young noblewoman at the center of the story, who is in love with the troubadour of the title—tenor Yonghoon Lee—but also pursued by Count di Luna, sung by the great Dmitri Hvorostovsky. Dolora Zajick completes the quartet of principals in her signature role of Azucena, the mysterious Gypsy woman who sets the dramatic events in motion. Marco Armiliato conducts David McVicar’s Goya-inspired production.";
+const menuItems = [
+  {
+    index: 0,
+    component: <Synopsis />,
+    title: "Synopsis",
+  },
+  {
+    index: 1,
+    component: <Showings />,
+    title: "Showings",
+  },
+  {
+    index: 2,
+    component: <Cast />,
+    title: "Cast",
+  },
+  {
+    index: 3,
+    component: <Creators />,
+    title: "Creators",
+  },
+  {
+    index: 4,
+    component: null,
+    title: "Partners",
+  },
+];
 
 const EventScreen = () => {
-  const [expand, setExpand] = useState(false);
-  const elips = <Text style={styles.touchableElips}>...</Text>;
+  const { statusBar, setStatusBar, scrollY } = useContext(StatusBarContext);
+
+  const [openItems, setOpenItems] = useState([]);
+  const [openItem, setOpenItem] = useState(null);
+  const [close, setClose] = useState(false);
+
+  const ani = useRef(new Animated.Value(1000)).current;
+  const aniTwo = useRef(new Animated.Value(0.95)).current;
+
+  useEffect(() => {
+    setTimeout(() => {
+      Animated.stagger(700, [
+        Animated.timing(ani, {
+          toValue: 60,
+          delay: 250,
+          duration: 800,
+          // easing: Easing.out(),
+          useNativeDriver: true,
+        }),
+        Animated.spring(aniTwo, {
+          toValue: 1,
+          delay: 250,
+          duration: 200,
+          easing: Easing.out(),
+          useNativeDriver: true,
+        }),
+      ]).start();
+    }, 200);
+  }, []);
+
+  const handleBackButton = () => {
+    setClose(true);
+    setOpenItem(null);
+  };
+
+  const handlePress = (index, pressed) => {
+    setStatusBar({ mode: statusBar.mode, index: index });
+    setClose(false);
+    setOpenItem(pressed ? index : null);
+  };
   return (
-    <View style={styles.container}>
-      <View style={styles.eventsContainer}>
-        <View style={styles.event}>
-          <Text style={styles.day}>Wednesday</Text>
-          <Text style={styles.time}>March 15th at 7 PM</Text>
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.cta}>Buy Tickets &rarr;</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.event}>
-          <Text style={styles.day}>Saturday</Text>
-          <Text style={styles.time}>March 18th at 8:30 PM</Text>
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.cta}>Buy Tickets &rarr;</Text>
-          </TouchableOpacity>
-        </View>
+    <>
+      <StatusBar style={scrollPosition(scrollY, openItem)} />
+      <Container aniTwo={aniTwo} ani={ani}>
+        <Heading />
+        <Menu
+          onOpen={(val) => {
+            setOpenItem(val);
+          }}
+          open={openItem}
+          menuItems={menuItems}
+          handlePress={handlePress}
+          close={close}
+        ></Menu>
+      </Container>
+      <Fade />
+      <View style={styles.fixedContainer}>
+        {openItem !== null && (
+          <Button
+            isItemsOpen={openItem !== null ? true : false}
+            onPress={handleBackButton}
+            size="small"
+          >
+            <Ionicons name="caret-back" size={18} color="white" />
+          </Button>
+        )}
+        <Button isItemsOpen={openItem !== null ? true : false}>
+          Purchase Tickets
+        </Button>
       </View>
-      <View style={styles.headingBox}>
-        <Text style={[styles.heading, styles.white]}>IL</Text>
-        <Text style={[styles.red, styles.heading]}> TROVATORE</Text>
-      </View>
-      <TouchableOpacity
-        onPress={() => {
-          setExpand(!expand);
-        }}
-        style={styles.pBox}
-      >
-        <Text style={styles.subHead}>Synopsis</Text>
-        <Text style={styles.p}>
-          {!expand ? synopsis.slice(0, 150) : synopsis}
-          {!expand && elips}
-        </Text>
-      </TouchableOpacity>
-    </View>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: "column",
-    color: white,
-    width: "100%",
-    paddingTop: 24,
+  spacer: {
+    paddingBottom: 10,
   },
   headingBox: {
-    // flex: 1,
-    padding: 24,
-    paddingTop: 38,
-    paddingBottom: 38,
+    marginLeft: -20,
+  },
+  fixedContainer: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    height: 100,
+    right: 0,
+    alignItems: "center",
+    justifyContent: "flex-start",
     flexDirection: "row",
+    paddingHorizontal: padding.mainHorizontal,
   },
-  heading: {
-    fontFamily: "AGBold",
-    fontSize: 38,
-  },
-  pBox: {
-    padding: 24,
-  },
-  p: {
-    color: white,
-    fontSize: 24,
-    fontFamily: "Baskerville",
-    lineHeight: 24,
-  },
-  subHead: {
-    color: white,
-    fontSize: 24,
-    fontFamily: "AGBold",
-    marginBottom: 18,
-  },
-  white: {
-    color: white,
-  },
-  red: {
-    color: red,
-  },
-  touchableElips: {
-    color: red,
-    fontSize: 18,
-    fontFamily: "AGBold",
-  },
-  eventsContainer: {
-    // flex: 1,
-    flexDirection: "row",
+  main: {
+    backgroundColor: colors.bg,
     width: "100%",
-    justifyContent: "space-between",
-    // justifyContent: "flex-start",
-    alignContent: "flex-start",
-    // gap: 24,
-  },
-  event: {
-    paddingLeft: 24,
-    paddingRight: 24,
     flex: 1,
+    paddingHorizontal: 36,
+    paddingTop: 12,
+    marginTop: 60,
+    borderRadius: 20,
   },
-  button: {
-    backgroundColor: red,
-    padding: 8,
-    flexGrow: 0,
-    borderRadius: 5,
-  },
-  day: {
-    fontSize: 14,
-    color: red,
-    fontFamily: "AGBold",
-    paddingBottom: 7,
-    textTransform: "uppercase",
-  },
-  time: {
-    fontSize: 24,
-    color: white,
-    fontFamily: "AGBook",
-    paddingBottom: 11,
-  },
-  cta: {
-    fontFamily: "AGBook",
-    // textDecorationLine: "underline",
-    color: white,
+  container: {
+    flex: 1,
+    backgroundColor: "#091127",
+    alignItems: "center",
+    justifyContent: "center",
+    zIndex: 1,
   },
 });
 

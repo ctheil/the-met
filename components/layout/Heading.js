@@ -7,9 +7,9 @@ import { colors, padding } from "../styles/styles";
 const Heading = (props) => {
   return (
     <Animated.View
-      onLayout={(e) => {
-        props.setTop(e.nativeEvent.layout);
-      }}
+      // onLayout={(e) => {
+      //   props.setTop(e.nativeEvent.layout);
+      // }}
       style={[styles.headingBox, { height: props.height }, props.style]}
     >
       <Typography variant="h1">Il Trovatore</Typography>

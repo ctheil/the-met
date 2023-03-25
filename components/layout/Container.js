@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import {
   Animated,
   SafeAreaView,
@@ -6,67 +6,70 @@ import {
   StyleSheet,
   View,
 } from "react-native";
+import { StatusBarContext } from "../lib/context";
 import { colors, padding } from "../styles/styles";
 
-const Container = ({ children, handleScroll, scrollY, ani, aniTwo }) => {
+const Container = ({ children, ani, aniTwo }) => {
   const marTop = useRef(new Animated.Value(60)).current;
+  // const [offset, setOffset] = useState(null);
+  const offset = useRef(new Animated.Value(0)).current;
+  const [isOffset, setIsOffset] = useState(false);
 
-  // handleScroll = (e) => {
-  //   Animated.timing(marTop, {
-  //     toValue: 0,
-  //     duration: 100,
-  //     useNativeDriver: true,
-  //   }).start();
-  // };
+  const { scrollY, setScrollY } = useContext(StatusBarContext);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsOffset(true);
+    }, 1500);
+  }, []);
+
+  const headerHeight = offset.interpolate({
+    inputRange: [0, 60, 100],
+    outputRange: [60, 0, 0],
+  });
+
+  const handleScroll = ({ nativeEvent }) => {
+    setScrollY(nativeEvent.contentOffset.y);
+    // setIsOffset(nativeEvent.contentOffset.y > 100 ? true : false);
+    // console.log(isOffset);
+    // return Animated.event([{ nativeEvent: { contentOffset: { y: offset } } }], {
+    //   useNativeDriver: true,
+    // });
+  };
 
   return (
     <Animated.ScrollView
-      onScroll={handleScroll}
+      onScroll={Animated.event(
+        [{ nativeEvent: { contentOffset: { y: offset } } }],
+        // {
+        //   listener: (event) => {
+        //     handleScroll(event);
+        //   },
+        // },
+        {
+          useNativeDriver: true,
+          listener: (event) => {
+            handleScroll(event);
+          },
+        }
+      )}
       scrollEventThrottle={16}
-      // fadingEdgeLength={1}
-      // translateY: scrollY.interpolate({
-      //         inputRange: [-1, 0, topEdge - 1, topEdge, topEdge + 1],
-      //         outputRange: [0, 0, 0, 0, -1],
-      //       }),
       style={[
         styles.main,
-        ,
-        { transform: [{ translateY: ani }, { scale: aniTwo }] },
         {
-          transform: scrollY
-            ? [
-                {
-                  translateY: marTop.interpolate({
-                    inputRange: [0, scrollY < 0 ? 60 : 0],
-                    outputRange: [60, 0],
-                  }),
-                },
-              ]
+          transform: !isOffset
+            ? [{ translateY: ani }, { scale: aniTwo }]
             : [
                 {
-                  translateY: 60,
+                  translateY: headerHeight,
                 },
               ],
         },
-        // {
-        //   marginTop: scrollY
-        //     ? marTop.interpolate({
-        //         inputRange: [0, scrollY < 0 ? 0 : scrollY + 60],
-        //         outputRange: [0, 60],
-        //       })
-        //     : 60,
-        // },
       ]}
-      // invertStickyHeaders={true}
-      // StickyHeaderComponent={<Fade />}
-      // stickyHeaderIndices={[0]}
     >
-      {/* <SafeAreaView> */}
       <View>{children}</View>
 
       <View style={styles.spacer} />
-
-      {/* </SafeAreaView> */}
     </Animated.ScrollView>
   );
 };
@@ -81,7 +84,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: padding.mainHorizontal,
     paddingTop: 12,
-    // marginTop: 60,
     borderRadius: 24,
   },
 });

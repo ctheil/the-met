@@ -6,7 +6,7 @@ import imageOne from "../assets/images/Group_Swords_Trovatore_2271-s.jpg";
 import imageTwo from "../assets/images/the-gypsy.jpg";
 import imageThree from "../assets/images/son2.jpeg";
 import imageFour from "../assets/images/execution.jpeg";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Divider from "./layout/Divider";
 
 const Synopsis = () => {
@@ -15,12 +15,12 @@ const Synopsis = () => {
   const height = useRef(new Animated.Value(-40)).current;
   const scale = useRef(new Animated.Value(0.95)).current;
   const width = useRef(new Animated.Value(90)).current;
+  const [scrollY, setScrollY] = useState(null);
 
   useEffect(() => {
     Animated.timing(translate, {
       toValue: 0,
       duration: 100,
-      // easing: Easing.inOut(),
       useNativeDriver: true,
     }).start();
     Animated.stagger(200, [
@@ -38,9 +38,6 @@ const Synopsis = () => {
       Animated.timing(scale, {
         toValue: 1,
         duration: 100,
-        // delay: 300,
-        // easing: Easing.back(),
-        // delay: 3000,
         useNativeDriver: true,
       }),
       Animated.timing(width, {
@@ -50,6 +47,7 @@ const Synopsis = () => {
       }),
     ]).start();
   }, []);
+
   return (
     <Animated.View
       style={[
@@ -57,7 +55,6 @@ const Synopsis = () => {
 
         {
           opacity: opacity,
-          // transform: [{ scale: scale }, { translateX: height }],
         },
       ]}
     >

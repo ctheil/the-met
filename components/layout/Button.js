@@ -1,13 +1,51 @@
-import { useRef } from "react";
-import { Animated, StyleSheet, TouchableOpacity } from "react-native";
+import { useEffect, useRef } from "react";
+import { Animated, Easing, StyleSheet, TouchableOpacity } from "react-native";
 import { colors } from "../styles/styles";
 import Typography from "../Typography";
 
 const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 
 const Button = ({ children, size, onPress, isItemsOpen }) => {
-  const translate = useRef(new Animated.Value(1)).current;
+  const translate = useRef(
+    new Animated.Value(size === "small" ? 20 : 100)
+  ).current;
   const scale = useRef(new Animated.Value(1)).current;
+
+  useEffect(() => {
+    if (size === "small") {
+      Animated.spring(translate, {
+        toValue: 0,
+        duration: 1500,
+        easing: Easing.inOut(),
+        useNativeDriver: true,
+      }).start();
+    } else {
+      setTimeout(() => {
+        Animated.spring(translate, {
+          toValue: 0,
+          duration: 1500,
+          easing: Easing.inOut(),
+          useNativeDriver: true,
+        }).start();
+      }, 1500);
+    }
+  }, []);
+
+  const handlePress = () => {
+    // if (size === "small") {
+    //   const transition = Animated.spring(translate, {
+    //     toValue: -150,
+    //     duration: 200,
+    //     useNativeDriver: true,
+    //   }).start(() => {
+    //   });
+    // } else {
+    //   Animated.spring(translate, {
+    //     toValue: 0,
+    //   });
+    // }
+    onPress ? onPress() : alert("Thank you for your purchase!");
+  };
 
   const handlePressIn = (event) => {
     // console.log(event);
@@ -25,17 +63,24 @@ const Button = ({ children, size, onPress, isItemsOpen }) => {
   return (
     <AnimatedTouchable
       onPressIn={handlePressIn}
-      onPress={onPress ? onPress : () => alert("Thank you for your purchase!")}
+      onPress={handlePress}
       style={[
         styles.button,
-        { transform: [{ translateY: translate }, { scale: scale }] },
+        {
+          transform:
+            size === "small"
+              ? [{ translateX: translate }, { scale: scale }]
+              : [{ translateY: translate }, { scale: scale }],
+        },
         size === "small"
           ? {
               flex: 0.25,
               borderTopRightRadius: 0,
               borderBottomRightRadius: 0,
-              borderRightWidth: 2,
-              borderColor: colors.bg,
+              borderWidth: 2,
+              borderColor: colors.red,
+              backgroundColor: "rgba(0, 0, 0, 0.1)",
+              // color: colors.red,
             }
           : isItemsOpen
           ? { borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }
