@@ -32,6 +32,22 @@ const Container = ({ children, handleScroll, scrollY, ani, aniTwo }) => {
         styles.main,
         ,
         { transform: [{ translateY: ani }, { scale: aniTwo }] },
+        {
+          transform: scrollY
+            ? [
+                {
+                  translateY: marTop.interpolate({
+                    inputRange: [0, scrollY < 0 ? 60 : 0],
+                    outputRange: [60, 0],
+                  }),
+                },
+              ]
+            : [
+                {
+                  translateY: 60,
+                },
+              ],
+        },
         // {
         //   marginTop: scrollY
         //     ? marTop.interpolate({
@@ -65,7 +81,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: padding.mainHorizontal,
     paddingTop: 12,
-    marginTop: 60,
+    // marginTop: 60,
     borderRadius: 24,
   },
 });

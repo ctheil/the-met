@@ -160,7 +160,7 @@ export default function App() {
           // }}
           setTop={setTop}
           height={height}
-          scrollY={scrollY}
+          // scrollY={scrollY}
         />
         <Menu
           onOpen={(val) => {
