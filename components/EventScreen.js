@@ -14,6 +14,7 @@ import Creators from "./Creators";
 import { useContext, useEffect, useRef, useState } from "react";
 import { colors, padding } from "./styles/styles";
 import { scrollPosition } from "./lib/scrollPosition";
+import Partners from "./Partners";
 
 const menuItems = [
   {
@@ -38,7 +39,7 @@ const menuItems = [
   },
   {
     index: 4,
-    component: null,
+    component: <Partners />,
     title: "Partners",
   },
 ];
