@@ -1,11 +1,14 @@
 import { StatusBar } from "expo-status-bar";
-import { Animated, StyleSheet, View } from "react-native";
+import { Animated, ImageBackground, StyleSheet, View } from "react-native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useState } from "react";
 import { colors, padding } from "./components/styles/styles";
 import { StatusBarProvider } from "./components/lib/context";
 import EventScreen from "./components/EventScreen";
+import Typography from "./components/Typography";
+import { Image } from "expo-image";
+import splash from "./assets/images/public/splash.png";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -52,44 +55,15 @@ export default function App() {
   };
 
   return (
-    <View onLayout={onLayoutRootView} style={[styles.container]}>
+    <ImageBackground
+      source={splash}
+      onLayout={onLayoutRootView}
+      style={[styles.container]}
+    >
       <StatusBarProvider>
-        {/* <StatusBar style={statusBar.mode} />
-        <Container
-          aniTwo={aniTwo}
-          ani={ani}
-          scrollY={scrollY}
-          handleScroll={handleScroll}
-        >
-          <Heading setTop={setTop} height={height} />
-          <Menu
-            onOpen={(val) => {
-              setOpenItem(val);
-            }}
-            open={openItem}
-            menuItems={menuItems}
-            handlePress={handlePress}
-            close={close}
-          ></Menu>
-        </Container>
-        <Fade />
-        <View style={styles.fixedContainer}>
-          {openItems.length > 0 && (
-            <Button
-              isItemsOpen={openItems.length > 0 ? true : false}
-              onPress={handleBackButton}
-              size="small"
-            >
-              <Ionicons name="caret-back" size={18} color="white" />
-            </Button>
-          )}
-          <Button isItemsOpen={openItems.length > 0 ? true : false}>
-            Purchase Tickets
-          </Button>
-        </View> */}
         <EventScreen />
       </StatusBarProvider>
-    </View>
+    </ImageBackground>
   );
 }
 
