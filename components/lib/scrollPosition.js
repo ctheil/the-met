@@ -31,6 +31,8 @@ export const scrollPosition = (scrollY, index) => {
     } else {
       mode = "dark";
     }
+  } else if (index === 4 && scrollY > 35) {
+    mode = "dark";
   }
   return mode;
 };
