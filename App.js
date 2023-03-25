@@ -25,6 +25,7 @@ import Showings from "./components/Showings";
 import Button from "./components/layout/Button";
 import Cast from "./components/Cast";
 import { Ionicons } from "@expo/vector-icons";
+import Creators from "./components/Creators";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -39,11 +40,40 @@ export default function App() {
     AGItalics: require("./assets/fonts/AVGARDDO_2.ttf"),
     AGBold: require("./assets/fonts/AVGARDD_2.ttf"),
   });
+
+  const menuItems = [
+    {
+      index: 0,
+      component: <Synopsis />,
+      title: "Synopsis",
+    },
+    {
+      index: 1,
+      component: <Showings />,
+      title: "Showings",
+    },
+    {
+      index: 2,
+      component: <Cast />,
+      title: "Cast",
+    },
+    {
+      index: 3,
+      component: <Creators />,
+      title: "Creators",
+    },
+    {
+      index: 4,
+      component: null,
+      title: "Partners",
+    },
+  ];
   const [scrollPosition, setScrollPosition] = useState(null);
   // const height = useRef(new Animated.Value(50)).current;
   // const scrollY = useRef(new Animated.Value(0)).current;
   const [top, setTop] = useState(null);
   const [itemIsOpen, setItemIsOpen] = useState({ isItemsOpen: false, is: [] });
+  const [openItem, setOpenItem] = useState(null);
   const [openItems, setOpenItems] = useState([]);
   const [close, setClose] = useState(false);
   const [scrollY, setScrollY] = useState(null);
@@ -93,6 +123,7 @@ export default function App() {
   };
   const handlePress = (index, pressed) => {
     setClose(false);
+    setOpenItems(pressed ? index : null);
     setItemIsOpen({ isItemsOpen: true });
     const items = new Set(openItems);
     items.has(index) ? items.delete(index) : items.add(index);
@@ -102,6 +133,7 @@ export default function App() {
   const handleBackButton = () => {
     setClose(true);
     setOpenItems([]);
+    setOpenItem(null);
   };
 
   const topEdge = top?.y - height + top?.height;
@@ -130,8 +162,16 @@ export default function App() {
           height={height}
           scrollY={scrollY}
         />
-        <Menu>
-          <MenuItem
+        <Menu
+          onOpen={(val) => {
+            setOpenItem(val);
+          }}
+          open={openItem}
+          menuItems={menuItems}
+          handlePress={handlePress}
+          close={close}
+        >
+          {/* <MenuItem
             close={close}
             handlePress={handlePress}
             component={<Synopsis />}
@@ -161,13 +201,17 @@ export default function App() {
           </MenuItem>
           <MenuItem close={close} handlePress={handlePress} index={4}>
             Partners
-          </MenuItem>
+          </MenuItem> */}
         </Menu>
       </Container>
       <Fade />
       <View style={styles.fixedContainer}>
         {openItems.length > 0 && (
-          <Button onPress={handleBackButton} size="small">
+          <Button
+            isItemsOpen={openItems.length > 0 ? true : false}
+            onPress={handleBackButton}
+            size="small"
+          >
             <Ionicons
               // style={{ margin: 0, padding: 0 }}
               name="caret-back"
@@ -176,7 +220,9 @@ export default function App() {
             />
           </Button>
         )}
-        <Button>Purchase Tickets</Button>
+        <Button isItemsOpen={openItems.length > 0 ? true : false}>
+          Purchase Tickets
+        </Button>
       </View>
     </View>
   );

@@ -17,12 +17,40 @@ const toggleItem = () => {
   // setExpanded(!expanded)
 };
 
-export const Menu = ({ children, style }) => {
+export const Menu = ({
+  children,
+  style,
+  menuItems,
+  handlePress,
+  close,
+  onOpen,
+}) => {
   const [selected, setSelected] = useState(null);
+  const [open, setOpen] = useState(null);
   const handleSelect = (index) => {
     setSelected(index);
   };
-  return <View style={[styles.container, style]}>{children}</View>;
+  return (
+    <View style={[styles.container, style]}>
+      {menuItems
+        ? menuItems.map((item, index) => (
+            <MenuItem
+              close={close}
+              onOpen={() => {
+                setOpen(open === item.index ? null : item.index);
+              }}
+              component={item.component}
+              index={item.index}
+              key={item.index}
+              handlePress={handlePress}
+              open={open}
+            >
+              {item.title}
+            </MenuItem>
+          ))
+        : children}
+    </View>
+  );
 };
 export const MenuItem = ({
   children,
@@ -32,29 +60,37 @@ export const MenuItem = ({
   primary,
   secondary,
   animation,
-  open,
+  defaultOpen,
   delay,
   handlePress,
   close,
+  onOpen,
+  open,
 }) => {
-  const [pressed, setPressed] = useState(false);
-
+  // const [pressed, setPressed] = useState(false);
+  // useEffect(() => {
+  //   defaultOpen && onOpen(index);
+  // }, []);
   useEffect(() => {
     if (close) {
-      setPressed(false);
+      onOpen(null);
     }
   }, [close]);
 
   const handleTap = () => {
-    setPressed(!pressed);
-    handlePress(index, pressed);
+    if (open === index) {
+      onOpen(null);
+    } else {
+      onOpen(index);
+    }
+    handlePress && handlePress(index, open === index ? false : true);
     toggleItem();
   };
   useEffect(() => {
-    if (open) {
+    if (defaultOpen) {
       if (delay) {
         setTimeout(() => {
-          setPressed(true);
+          onOpen(index);
           toggleItem();
         }, 250);
       }
@@ -78,12 +114,12 @@ export const MenuItem = ({
             <Typography variant={"h3"}>{secondary}</Typography>
           </View>
           <Ionicons
-            name={pressed ? "remove" : "add"}
+            name={open === index ? "remove" : "add"}
             size={36}
             color={colors.font}
           />
         </AnimatedTouchable>
-        {pressed && component}
+        {open === index && component}
       </>
     );
   } else {
@@ -94,7 +130,7 @@ export const MenuItem = ({
           onPress={handleTap}
           style={[styles.item, ,]}
         >
-          {pressed && (
+          {open === index && (
             <View
               style={{
                 shadowColor: "#000",
@@ -108,21 +144,21 @@ export const MenuItem = ({
                 left: -10,
                 right: -10,
                 top: 0,
-
-                // shadowRadius: 50,
               }}
             />
           )}
-          <Typography variant={pressed ? "selectedMenuItem" : "menuItem"}>
+          <Typography
+            variant={open === index ? "selectedMenuItem" : "menuItem"}
+          >
             {children}
           </Typography>
           <Ionicons
-            name={pressed ? "remove" : "add"}
+            name={open === index ? "remove" : "add"}
             size={36}
             color={colors.font}
           />
         </TouchableOpacity>
-        {pressed && component}
+        {open === index && component}
       </>
     );
   }
@@ -131,7 +167,6 @@ export const MenuItem = ({
 const styles = StyleSheet.create({
   container: {
     flexDirection: "column",
-    // alignItems: "center",
     marginHorizontal: -padding.mainHorizontal / 2,
     gap: 0,
     flex: 1,
@@ -139,9 +174,7 @@ const styles = StyleSheet.create({
   item: {
     paddingHorizontal: padding.mainHorizontal / 2,
     borderBottomColor: colors.font,
-    // borderTopColor: colors.font,
     borderBottomWidth: 1,
-    // borderTopWidth: 1,
     paddingVertical: 8,
     flexDirection: "row",
     justifyContent: "space-between",

@@ -5,7 +5,7 @@ import Typography from "../Typography";
 
 const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 
-const Button = ({ children, size, onPress }) => {
+const Button = ({ children, size, onPress, isItemsOpen }) => {
   const translate = useRef(new Animated.Value(1)).current;
   const scale = useRef(new Animated.Value(1)).current;
 
@@ -37,7 +37,9 @@ const Button = ({ children, size, onPress }) => {
               borderRightWidth: 2,
               borderColor: colors.bg,
             }
-          : { borderTopLeftRadius: 0, borderBottomLeftRadius: 0 },
+          : isItemsOpen
+          ? { borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }
+          : null,
       ]}
     >
       <Typography variant="cta">{children}</Typography>

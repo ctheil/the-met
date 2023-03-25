@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Animated, Easing, StyleSheet, View } from "react-native";
 import { Menu, MenuItem } from "./menu/Menu";
 import Showing from "./Showing";
@@ -10,6 +10,8 @@ const Showings = () => {
   const opacity = useRef(new Animated.Value(0)).current;
   const transition = useRef(new Animated.Value(-10)).current;
   const transitionTwo = useRef(new Animated.Value(-12)).current;
+
+  const [open, setOpen] = useState(null);
 
   useEffect(() => {
     Animated.spring(progress, { toValue: 1, useNativeDriver: true }).start();
@@ -44,7 +46,12 @@ const Showings = () => {
         { opacity: progress, transform: [{ translateY: height }] },
       ]}
     >
-      <Menu style={{ marginVertical: 24 }}>
+      <Menu
+        onOpen={(val) => {
+          setOpen(val === open ? null : val);
+        }}
+        style={{ marginVertical: 24 }}
+      >
         <Animated.View
           style={{
             opacity: opacity,
@@ -52,8 +59,12 @@ const Showings = () => {
           }}
         >
           <MenuItem
-            open={true}
+            defaultOpen={true}
+            open={open}
             delay={true}
+            onOpen={(val) => {
+              setOpen(val === open ? null : val);
+            }}
             // animation={{ opacity: opacity, transition: transition, delay: 20 }}
             variant="sub"
             index={0}
@@ -71,6 +82,10 @@ const Showings = () => {
         >
           <MenuItem
             // animation={{ opacity: opacity, transition: transition, delay: 30 }}
+            onOpen={(val) => {
+              setOpen(val === open ? null : val);
+            }}
+            open={open}
             variant="sub"
             index={1}
             primary="MARCH 18th"
