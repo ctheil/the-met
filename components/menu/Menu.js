@@ -12,11 +12,6 @@ import { useEffect, useState } from "react";
 
 const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 
-const toggleItem = () => {
-  LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-  // setExpanded(!expanded)
-};
-
 export const Menu = ({
   children,
   style,
@@ -24,17 +19,16 @@ export const Menu = ({
   handlePress,
   close,
   onOpen,
+  toggleItem,
 }) => {
   const [selected, setSelected] = useState(null);
   const [open, setOpen] = useState(null);
-  const handleSelect = (index) => {
-    setSelected(index);
-  };
   return (
     <View style={[styles.container, style]}>
       {menuItems
         ? menuItems.map((item, index) => (
             <MenuItem
+              toggleItem={toggleItem}
               close={close}
               onOpen={() => {
                 setOpen(open === item.index ? null : item.index);
@@ -66,6 +60,7 @@ export const MenuItem = ({
   close,
   onOpen,
   open,
+  toggleItem,
 }) => {
   // const [pressed, setPressed] = useState(false);
   // useEffect(() => {
@@ -96,6 +91,7 @@ export const MenuItem = ({
       }
     }
   }, []);
+  console.log(open);
   if (variant === "sub") {
     return (
       <>
@@ -175,7 +171,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: padding.mainHorizontal / 2,
     borderBottomColor: colors.font,
     borderBottomWidth: 1,
-    paddingVertical: 8,
+    paddingVertical: 4,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",

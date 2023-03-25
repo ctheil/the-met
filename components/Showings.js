@@ -1,8 +1,19 @@
 import { useEffect, useRef, useState } from "react";
-import { Animated, Easing, StyleSheet, View } from "react-native";
+import {
+  Animated,
+  Easing,
+  LayoutAnimation,
+  StyleSheet,
+  View,
+} from "react-native";
 import { Menu, MenuItem } from "./menu/Menu";
 import Showing from "./Showing";
 import { padding } from "./styles/styles";
+
+const toggleItem = () => {
+  LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+  // setExpanded(!expanded)
+};
 
 const Showings = () => {
   const progress = useRef(new Animated.Value(0)).current;
@@ -47,6 +58,7 @@ const Showings = () => {
       ]}
     >
       <Menu
+        toggleItem={toggleItem}
         onOpen={(val) => {
           setOpen(val === open ? null : val);
         }}
@@ -59,6 +71,7 @@ const Showings = () => {
           }}
         >
           <MenuItem
+            toggleItem={toggleItem}
             defaultOpen={true}
             open={open}
             delay={true}
@@ -82,6 +95,7 @@ const Showings = () => {
         >
           <MenuItem
             // animation={{ opacity: opacity, transition: transition, delay: 30 }}
+            toggleItem={toggleItem}
             onOpen={(val) => {
               setOpen(val === open ? null : val);
             }}

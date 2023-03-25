@@ -1,5 +1,11 @@
 import { StatusBar } from "expo-status-bar";
-import { Animated, Easing, StyleSheet, View } from "react-native";
+import {
+  Animated,
+  Easing,
+  LayoutAnimation,
+  StyleSheet,
+  View,
+} from "react-native";
 import Button from "./layout/Button";
 import Container from "./layout/Container";
 import Fade from "./layout/Fade";
@@ -76,6 +82,7 @@ const EventScreen = () => {
   }, []);
 
   const handleBackButton = () => {
+    toggleItem();
     setClose(true);
     setOpenItem(null);
   };
@@ -84,6 +91,11 @@ const EventScreen = () => {
     setStatusBar({ mode: statusBar.mode, index: index });
     setClose(false);
     setOpenItem(pressed ? index : null);
+  };
+
+  const toggleItem = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    // setExpanded(!expanded)
   };
   return (
     <>
@@ -98,6 +110,7 @@ const EventScreen = () => {
           menuItems={menuItems}
           handlePress={handlePress}
           close={close}
+          toggleItem={toggleItem}
         ></Menu>
       </Container>
       <Fade />
