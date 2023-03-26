@@ -91,7 +91,6 @@ export const MenuItem = ({
       }
     }
   }, []);
-  console.log(open);
   if (variant === "sub") {
     return (
       <>

@@ -1,7 +1,7 @@
 // component that displays the partners/sponsors for the event
 
 import { Image } from "expo-image";
-import { StyleSheet, View } from "react-native";
+import { Animated, Easing, StyleSheet, View } from "react-native";
 import { padding } from "./styles/styles";
 
 // IMAGE IMPORTS
@@ -14,6 +14,7 @@ import boa from "../assets/images/spons/Bank-of-America.png";
 import viking from "../assets/images/spons/Viking_Cruises.png";
 import rolex from "../assets/images/spons/rolex.png";
 import yamaha from "../assets/images/spons/Yamaha.png";
+import { useEffect, useRef, useState } from "react";
 
 const spons = [
   { name: "bloomberg", logo: bloom, priority: "high" },
@@ -22,26 +23,55 @@ const spons = [
 ];
 
 const Partners = () => {
+  const o1 = useRef(new Animated.Value(0)).current;
+  const o2 = useRef(new Animated.Value(0)).current;
+  const o3 = useRef(new Animated.Value(0)).current;
+  const o4 = useRef(new Animated.Value(0)).current;
+  const o5 = useRef(new Animated.Value(0)).current;
+  const o6 = useRef(new Animated.Value(0)).current;
+  const o7 = useRef(new Animated.Value(0)).current;
+  const o8 = useRef(new Animated.Value(0)).current;
+  const o9 = useRef(new Animated.Value(0)).current;
+
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    Animated.stagger(250, [
+      Animated.spring(o1, {
+        toValue: 1,
+        duration: 1000,
+        easing: Easing.inOut(),
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, []);
+
   return (
     <View style={styles.container}>
       <View style={styles.high}>
         <Image
           contentFit="contain"
-          transition={1000}
+          // transition={1000}
+          transition={{ duration: 1000 }}
           source={bloom}
           style={[styles.image, { marginTop: -24 }]}
         />
       </View>
       <View style={styles.low}>
         <Image
+          onLayout={(e) => {
+            if (e.nativeEvent.layout.height > 0) {
+              setIsMounted(true);
+            }
+          }}
           contentFit="contain"
-          transition={1000}
+          transition={{ duration: 1000 }}
           source={neubaur}
           style={[styles.image]}
         />
         <Image
           contentFit="contain"
-          transition={1000}
+          transition={{ duration: 1000 }}
           source={toll}
           style={[styles.image]}
         />
@@ -49,7 +79,7 @@ const Partners = () => {
       <View style={styles.low}>
         <Image
           contentFit="contain"
-          transition={1000}
+          transition={{ duration: 1000, delay: 750 }}
           source={trespa}
           style={[styles.image, { marginTop: -48 }]}
         />

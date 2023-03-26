@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
   },
   fixedContainer: {
     position: "absolute",
-    bottom: 0,
+    bottom: 10,
     left: 0,
     height: 100,
     right: 0,
