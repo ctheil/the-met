@@ -2,7 +2,7 @@ import { ImageBackground, StyleSheet, View } from "react-native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useState } from "react";
-import { StatusBarProvider } from "./components/lib/context";
+import { FontProvider, StatusBarProvider } from "./components/lib/context";
 import EventScreen from "./components/EventScreen";
 import splash from "./assets/images/public/splash.png";
 
@@ -37,7 +37,9 @@ export default function App() {
       style={[styles.container]}
     >
       <StatusBarProvider>
-        <EventScreen />
+        <FontProvider>
+          <EventScreen />
+        </FontProvider>
       </StatusBarProvider>
     </ImageBackground>
   );

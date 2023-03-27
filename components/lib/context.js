@@ -15,3 +15,15 @@ export const StatusBarProvider = ({ children }) => {
     </StatusBarContext.Provider>
   );
 };
+
+export const FontContext = React.createContext({});
+
+export const FontProvider = ({ children }) => {
+  const [rem, setRem] = useState(1);
+
+  return (
+    <FontContext.Provider value={{ rem, setRem }}>
+      {children}
+    </FontContext.Provider>
+  );
+};

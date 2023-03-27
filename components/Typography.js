@@ -1,12 +1,29 @@
+import { useContext } from "react";
 import { StyleSheet, Text } from "react-native";
+import { FontContext } from "./lib/context";
 import { colors } from "./styles/styles";
 import { bg, grey, red, white } from "./styles/typography-styles";
 
 export const Span = ({ variant, fontStyle, children }) => {
   return <Text style={[styles[variant], styles[fontStyle]]}> {children} </Text>;
 };
+
 const Typography = (props) => {
   // const [variant, fontSize, color] = props;
+  const { rem, setRem } = useContext(FontContext);
+
+  const fontSize = {
+    p: 13 * rem,
+    h1: 40 * rem,
+    h2: 21 * rem,
+    h3: 21 * rem,
+    cta: 21 * rem,
+    em: 24 * rem,
+    menuItem: 36 * rem,
+    selectedMenuItem: 35 * rem,
+    caption: 13 * rem,
+  };
+
   const mode = props.mode || "light";
   const { variant } = props;
   return (
@@ -20,7 +37,7 @@ const Typography = (props) => {
               ? "AGItalics"
               : styles[variant].fontFamily,
           color: props.color || styles[variant].color,
-          fontSize: props.fontSize || styles[variant].fontSize,
+          fontSize: props.fontSize * rem || fontSize[variant],
           textTransform: props.textTransform || styles[variant].textTransform,
         },
       ]}

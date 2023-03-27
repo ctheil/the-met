@@ -21,6 +21,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { colors, padding } from "./styles/styles";
 import { scrollPosition } from "./lib/scrollPosition";
 import Partners from "./Partners";
+import FontSizePicker from "./FontSizePicker";
 
 const menuItems = [
   {
@@ -112,6 +113,7 @@ const EventScreen = () => {
           close={close}
           toggleItem={toggleItem}
         ></Menu>
+        {/* <FontSizePicker /> */}
       </Container>
       <Fade />
       <View style={styles.fixedContainer}>
