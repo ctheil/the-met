@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "the-met",
+    "name": "The Met",
     "slug": "the-met",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -13,7 +13,8 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.calebtheil.the-met"
     },
     "android": {
       "adaptiveIcon": {
@@ -23,6 +24,11 @@
     },
     "web": {
       "favicon": "./assets/images/public/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "6dab1c28-448d-463d-9b20-747a241fa8d0"
+      }
     }
   }
 }
