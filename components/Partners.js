@@ -1,7 +1,7 @@
 // component that displays the partners/sponsors for the event
 
-import { Image } from "expo-image";
-import { Animated, Easing, StyleSheet, View } from "react-native";
+// import { Image } from "expo-image";
+import { Image, Animated, Easing, StyleSheet, View } from "react-native";
 import { padding } from "./styles/styles";
 
 // IMAGE IMPORTS

@@ -1,8 +1,8 @@
-import { Animated, StyleSheet, Text, View } from "react-native";
+import { Image, Animated, StyleSheet, Text, View } from "react-native";
 import { colors, padding } from "./styles/styles";
 import Typography, { Span } from "./Typography";
 import IMG from "../assets/images/Verdi-art.png";
-import { Image } from "expo-image";
+// import { Image } from "expo-image";
 import { useEffect, useRef } from "react";
 
 const addCreators = [

@@ -1,5 +1,5 @@
-import { Image } from "expo-image";
-import { Animated, Easing, StyleSheet, Text, View } from "react-native";
+// import { Image } from "expo-image";
+import { Animated, Easing, StyleSheet, Text, View, Image } from "react-native";
 import { colors, padding } from "./styles/styles";
 import Typography, { Span } from "./Typography";
 import imageOne from "../assets/images/Group_Swords_Trovatore_2271-s.jpg";

@@ -1,6 +1,6 @@
-import { Image } from "expo-image";
+// import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
-import { StyleSheet, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import Typography from "./Typography";
 import Fade from "./layout/Fade";
 import { colors, padding } from "./styles/styles";
