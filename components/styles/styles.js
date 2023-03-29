@@ -8,5 +8,5 @@ export const colors = {
 };
 
 export const padding = {
-  mainHorizontal: 24,
+  mainHorizontal: 48,
 };

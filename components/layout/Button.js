@@ -1,35 +1,60 @@
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { Animated, Easing, StyleSheet, TouchableOpacity } from "react-native";
+import { StatusBarContext } from "../lib/context";
 import { colors } from "../styles/styles";
 import Typography from "../Typography";
 
 const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 
 const Button = ({ children, size, onPress, isItemsOpen, fontSize }) => {
+  const { scrollY } = useContext(StatusBarContext);
   const translate = useRef(
     new Animated.Value(size === "small" ? 20 : 100)
   ).current;
   const scale = useRef(new Animated.Value(1)).current;
 
-  useEffect(() => {
-    if (size === "small") {
-      Animated.spring(translate, {
-        toValue: 0,
-        duration: 1500,
-        easing: Easing.inOut(),
-        useNativeDriver: true,
-      }).start();
-    } else {
-      setTimeout(() => {
-        Animated.spring(translate, {
-          toValue: 0,
-          duration: 1500,
-          easing: Easing.inOut(),
-          useNativeDriver: true,
-        }).start();
-      }, 1500);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (size === "small") {
+  //     Animated.spring(translate, {
+  //       toValue: 0,
+  //       duration: 1500,
+  //       easing: Easing.inOut(),
+  //       useNativeDriver: true,
+  //     }).start();
+  //   } else {
+  //     setTimeout(() => {
+  //       Animated.spring(translate, {
+  //         toValue: 0,
+  //         duration: 1500,
+  //         easing: Easing.inOut(),
+  //         useNativeDriver: true,
+  //       }).start();
+  //     }, 0);
+  //   }
+  // }, []);
+  const buttonIn = () => {
+    Animated.spring(translate, {
+      toValue: 100,
+      duration: 250,
+      easing: Easing.inOut(),
+      useNativeDriver: true,
+    }).start();
+  };
+  const buttonOut = () => {
+    Animated.spring(translate, {
+      toValue: 0,
+      duration: 250,
+      easing: Easing.inOut(),
+      useNativeDriver: true,
+    }).start();
+  };
+  if (scrollY < 410) {
+    buttonIn();
+  } else {
+    buttonOut();
+  }
+  // useEffect(() => {
+  // }, [scrollY]);
 
   const handlePress = () => {
     // if (size === "small") {
@@ -45,6 +70,14 @@ const Button = ({ children, size, onPress, isItemsOpen, fontSize }) => {
     //   });
     // }
     onPress ? onPress() : alert("Thank you for your purchase!");
+  };
+  const handleButtonOut = () => {
+    Animated.spring(translate, {
+      toValue: 100,
+      duration: 1500,
+      easing: Easing.inOut(),
+      useNativeDriver: true,
+    }).start();
   };
 
   const handlePressIn = (event) => {

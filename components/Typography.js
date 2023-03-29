@@ -36,12 +36,14 @@ const Typography = (props) => {
   return (
     <Text
       style={[
-        props.style,
+        { ...props.style },
         styles[variant],
         {
           fontFamily:
             props.fontStyle === "italics"
               ? "AGItalics"
+              : props?.weight
+              ? props.weight
               : styles[variant].fontFamily,
           color: props.color || styles[variant].color,
           fontSize: props.fontSize * rem || fontSize[variant],

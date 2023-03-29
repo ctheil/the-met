@@ -1,13 +1,17 @@
 import { StyleSheet, View, Animated } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
-const Fade = ({ style }) => {
+const Fade = ({ style, variant }) => {
   return (
     // <View style={styles.fade}>
     <Animated.View style={[styles.container, style]}>
       <LinearGradient
         style={styles.fade}
-        colors={["rgba(0, 0, 0, 0)", "rgba(0, 0, 0, 0.5)"]}
+        colors={
+          variant && variant === "total"
+            ? ["rgba(0, 0, 0, 0)", "rgba(0, 0, 0, 1)"]
+            : ["rgba(0, 0, 0, 0)", "rgba(0, 0, 0, 0.5)"]
+        }
       />
     </Animated.View>
     // </View>

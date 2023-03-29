@@ -3,8 +3,10 @@ import { Animated, StyleSheet, TouchableOpacity, View } from "react-native";
 import { StatusBarContext } from "./lib/context";
 import { colors } from "./styles/styles";
 import Typography from "./Typography";
+import { Ionicons } from "@expo/vector-icons";
 
 const textKeys = {
+  null: "Overview",
   0: "Synopsis",
   1: "Showings",
   2: "Cast",
@@ -56,6 +58,7 @@ const ScrollFlag = ({ index, handlePress }) => {
     >
       {/* <View style={styles.flagTop} /> */}
       <Typography style={{ letterSpacing: 1.2 }} variant="h3" color="white">
+        <Ionicons name="caret-up" size={21} color={colors.bg} />
         {textKeys[index]}
       </Typography>
       <View style={styles.flagBottom} />

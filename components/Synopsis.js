@@ -151,93 +151,93 @@ const Synopsis = () => {
   }, []);
 
   return (
-    <Swipeable renderLeftActions={<Text>Back?</Text>}>
-      <Animated.View
-        style={[
-          styles.container,
+    // <Swipeable renderLeftActions={<Text>Back?</Text>}>
+    <Animated.View
+      style={[
+        styles.container,
 
-          {
-            opacity: opacity,
-          },
-        ]}
-      >
-        {items.map((item, index) => (
-          <>
-            <Animated.View
-              key={`${item}_${index}`}
+        {
+          opacity: opacity,
+        },
+      ]}
+    >
+      {items.map((item, index) => (
+        <>
+          <Animated.View
+            key={`${item}_${index}`}
+            style={[
+              [styles.heading],
+              { transform: [{ translateY: translate }, { scale: scale }] },
+            ]}
+          >
+            <Text
               style={[
-                [styles.heading],
-                { transform: [{ translateY: translate }, { scale: scale }] },
+                styles.altFont,
+                { alignSelf: "flex-start" },
+                item.subHeaderProps[0],
               ]}
             >
-              <Text
-                style={[
-                  styles.altFont,
-                  { alignSelf: "flex-start" },
-                  item.subHeaderProps[0],
-                ]}
-              >
-                {item.subHeader[0]}
-              </Text>
-              <Typography fontSize={116} variant="h1" color={colors.bg}>
-                {item.header}
-              </Typography>
-              <Text
-                style={[
-                  styles.altFont,
-                  { alignSelf: "flex-end" },
-                  item.subHeaderProps[1],
-                ]}
-              >
-                {item.subHeader[1]}
-              </Text>
-            </Animated.View>
-            <Animated.View
+              {item.subHeader[0]}
+            </Text>
+            <Typography fontSize={116} variant="h1" color={colors.bg}>
+              {item.header}
+            </Typography>
+            <Text
               style={[
-                styles.imageBox,
-
-                {
-                  transform: [{ translateY: height }, { scale: scale }],
-                  // width: width,
-                },
+                styles.altFont,
+                { alignSelf: "flex-end" },
+                item.subHeaderProps[1],
               ]}
             >
-              <Image
-                style={item.imageProps.style}
-                transition={item.imageProps.transition}
-                source={item.image}
-                width={item.imageProps.width}
-                height={item.imageProps.height}
-                {...item.imageProps}
-              />
+              {item.subHeader[1]}
+            </Text>
+          </Animated.View>
+          <Animated.View
+            style={[
+              styles.imageBox,
 
-              {item.caption && (
-                <View style={styles.caption}>
-                  <Typography variant="caption">{item.caption[0]}</Typography>
-                  <Typography variant="caption">{item.caption[1]}</Typography>
-                </View>
-              )}
+              {
+                transform: [{ translateY: height }, { scale: scale }],
+                // width: width,
+              },
+            ]}
+          >
+            <Image
+              style={item.imageProps.style}
+              transition={item.imageProps.transition}
+              source={item.image}
+              width={item.imageProps.width}
+              height={item.imageProps.height}
+              {...item.imageProps}
+            />
+
+            {item.caption && (
+              <View style={styles.caption}>
+                <Typography variant="caption">{item.caption[0]}</Typography>
+                <Typography variant="caption">{item.caption[1]}</Typography>
+              </View>
+            )}
+          </Animated.View>
+          <Animated.View style={[styles.p, { opacity: opacity }]}>
+            <Animated.View
+              style={[styles.p, { opacity: opacity }]}
+              key={`paragraph_${index}`}
+            >
+              {item.paragraphs.map((paragraph, index) => (
+                <Typography
+                  color={colors.grey50}
+                  key={`paragraph_${index}`}
+                  variant="p"
+                >
+                  {paragraph}
+                </Typography>
+              ))}
             </Animated.View>
-            <Animated.View style={[styles.p, { opacity: opacity }]}>
-              <Animated.View
-                style={[styles.p, { opacity: opacity }]}
-                key={`paragraph_${index}`}
-              >
-                {item.paragraphs.map((paragraph, index) => (
-                  <Typography
-                    color={colors.grey50}
-                    key={`paragraph_${index}`}
-                    variant="p"
-                  >
-                    {paragraph}
-                  </Typography>
-                ))}
-              </Animated.View>
-            </Animated.View>
-          </>
-        ))}
-      </Animated.View>
-    </Swipeable>
+          </Animated.View>
+        </>
+      ))}
+    </Animated.View>
+    // </Swipeable>
   );
 };
 

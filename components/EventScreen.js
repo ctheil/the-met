@@ -25,6 +25,7 @@ import Partners from "./Partners";
 import FontSizePicker from "./FontSizePicker";
 import ScrollFlag from "./ScrollFlag";
 import Swipeable from "react-native-gesture-handler/Swipeable";
+import Overview from "./Overview";
 
 const menuItems = [
   {
@@ -128,7 +129,7 @@ const EventScreen = () => {
       <ScrollFlag handlePress={scrollToTop} index={openItem} />
       <Container ref={scrollRef} aniTwo={aniTwo} ani={ani}>
         <Heading />
-        {/* <View style={{ height: 500, width: "200%" }} /> */}
+        <Overview />
         {/* <Swipeable leftContent={swipeLeft}> */}
         <Menu
           onOpen={(val) => {
@@ -144,6 +145,7 @@ const EventScreen = () => {
         {/* <FontSizePicker /> */}
       </Container>
       <Fade />
+
       <View style={styles.fixedContainer}>
         {openItem !== null && (
           <Button

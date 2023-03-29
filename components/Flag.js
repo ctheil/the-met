@@ -14,8 +14,8 @@ const styles = StyleSheet.create({
   flag: {
     position: "absolute",
     top: -12,
-    left: 13,
-    width: 25,
+    left: 11.5,
+    width: 27,
     marginRight: 15,
     height: 55,
     backgroundColor: colors.red,
@@ -33,9 +33,9 @@ const styles = StyleSheet.create({
     height: 0,
     borderBottomWidth: 8,
     borderBottomColor: "transparent",
-    borderLeftWidth: 12.5,
+    borderLeftWidth: 13.5,
     borderLeftColor: colors.red,
-    borderRightWidth: 12.5,
+    borderRightWidth: 13.5,
     borderRightColor: colors.red,
   },
 });

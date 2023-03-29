@@ -12,9 +12,6 @@ const Heading = (props) => {
   const [open, setOpen] = useState(false);
   return (
     <Animated.View
-      // onLayout={(e) => {
-      //   props.setTop(e.nativeEvent.layout);
-      // }}
       style={[styles.headingBox, { height: props.height }, props.style]}
     >
       <View style={{ alignItems: "center", flexDirection: "row", zIndex: 10 }}>
@@ -39,7 +36,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    borderBottomColor: colors.font,
+    // borderBottomColor: "#000",
     borderBottomWidth: 4,
     backgroundColor: colors.bg,
     // height: 60,
