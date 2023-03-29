@@ -90,7 +90,7 @@ const Button = ({ children, size, onPress, isItemsOpen, fontSize }) => {
           : null,
       ]}
     >
-      <Typography fontSize={fontSize} variant="cta">
+      <Typography fontSize={fontSize && fontSize} variant="cta">
         {children}
       </Typography>
     </AnimatedTouchable>

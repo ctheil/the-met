@@ -113,7 +113,7 @@ const EventScreen = () => {
       <ScrollFlag handlePress={scrollToTop} index={openItem} />
       <Container ref={scrollRef} aniTwo={aniTwo} ani={ani}>
         <Heading />
-        <View style={{ height: 400, width: "200%" }} />
+        {/* <View style={{ height: 400, width: "200%" }} /> */}
         <Menu
           onOpen={(val) => {
             setOpenItem(val);

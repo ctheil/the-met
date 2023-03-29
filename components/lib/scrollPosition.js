@@ -1,6 +1,5 @@
 export const scrollPosition = (scrollY, index) => {
   let mode = "light";
-
   if (scrollY < 35) {
     return (mode = "light");
   }
