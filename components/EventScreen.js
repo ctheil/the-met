@@ -111,8 +111,22 @@ const EventScreen = () => {
     <>
       <StatusBar style={scrollPosition(scrollY, openItem)} />
       <ScrollFlag handlePress={scrollToTop} index={openItem} />
-      <Container ref={scrollRef} aniTwo={aniTwo} ani={ani}>
-        <Heading />
+      <Container
+        itemProps={{
+          open: openItem,
+          handlePress: handlePress,
+          close: close,
+          toggleItem: toggleItem,
+          onOpen: (val) => {
+            setOpenItem(val);
+          },
+        }}
+        items={menuItems}
+        ref={scrollRef}
+        aniTwo={aniTwo}
+        ani={ani}
+      >
+        {/* <Heading /> */}
         {/* <View style={{ height: 400, width: "200%" }} /> */}
         <Menu
           onOpen={(val) => {

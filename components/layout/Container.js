@@ -8,9 +8,10 @@ import {
 } from "react-native";
 import Flag from "../Flag";
 import { StatusBarContext } from "../lib/context";
+import { MenuItem } from "../menu/Menu";
 import { colors, padding } from "../styles/styles";
 
-const Container = React.forwardRef(({ children, ani, aniTwo }, ref) => {
+const Container = React.forwardRef(({ children, ani, aniTwo, items }, ref) => {
   const marTop = useRef(new Animated.Value(60)).current;
   // const [offset, setOffset] = useState(null);
   const offset = useRef(new Animated.Value(0)).current;
@@ -39,7 +40,7 @@ const Container = React.forwardRef(({ children, ani, aniTwo }, ref) => {
   };
 
   return (
-    <Animated.ScrollView
+    <Animated.FlatList
       ref={ref}
       onScroll={Animated.event(
         [{ nativeEvent: { contentOffset: { y: offset } } }],
@@ -55,6 +56,7 @@ const Container = React.forwardRef(({ children, ani, aniTwo }, ref) => {
           },
         }
       )}
+      data={items}
       scrollEventThrottle={16}
       style={[
         styles.main,
@@ -68,11 +70,24 @@ const Container = React.forwardRef(({ children, ani, aniTwo }, ref) => {
               ],
         },
       ]}
+      renderItem={({ item }) => {
+        console.log(item);
+        return (
+          <MenuItem
+            open={item.openItems}
+            menuItems={item.menuItems}
+            handlePress={item.handlePress}
+            close={item.close}
+            toggleItem={item.toggleItem}
+            onOpen={item.onOpen}
+          />
+        );
+      }}
     >
-      <View style={{ position: "relative" }}>{children}</View>
+      {/* <View style={{ position: "relative" }}>{children}</View>
 
-      <View style={styles.spacer} />
-    </Animated.ScrollView>
+      <View style={styles.spacer} /> */}
+    </Animated.FlatList>
   );
 });
 
