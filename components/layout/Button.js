@@ -5,7 +5,7 @@ import Typography from "../Typography";
 
 const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 
-const Button = ({ children, size, onPress, isItemsOpen }) => {
+const Button = ({ children, size, onPress, isItemsOpen, fontSize }) => {
   const translate = useRef(
     new Animated.Value(size === "small" ? 20 : 100)
   ).current;
@@ -75,11 +75,14 @@ const Button = ({ children, size, onPress, isItemsOpen }) => {
         size === "small"
           ? {
               flex: 0.25,
+              alignItems: "center",
+              justifyContent: "center",
               borderTopRightRadius: 0,
               borderBottomRightRadius: 0,
-              borderWidth: 2,
-              borderColor: colors.red,
-              backgroundColor: "rgba(0, 0, 0, 0.1)",
+              // borderWidth: 2,
+              // borderColor: colors.red,
+              backgroundColor: colors.font,
+
               // color: colors.red,
             }
           : isItemsOpen
@@ -87,7 +90,9 @@ const Button = ({ children, size, onPress, isItemsOpen }) => {
           : null,
       ]}
     >
-      <Typography variant="cta">{children}</Typography>
+      <Typography fontSize={fontSize} variant="cta">
+        {children}
+      </Typography>
     </AnimatedTouchable>
   );
 };

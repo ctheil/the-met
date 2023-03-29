@@ -3,8 +3,13 @@ import { AntDesign } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { Animated, StyleSheet, View } from "react-native";
 import { colors, padding } from "../styles/styles";
+import { useContext, useState } from "react";
+import { StatusBarContext } from "../lib/context";
+import Flag from "../Flag";
 
 const Heading = (props) => {
+  const { scrollY } = useContext(StatusBarContext);
+  const [open, setOpen] = useState(false);
   return (
     <Animated.View
       // onLayout={(e) => {
@@ -12,8 +17,9 @@ const Heading = (props) => {
       // }}
       style={[styles.headingBox, { height: props.height }, props.style]}
     >
-      <Typography variant="h1">Il Trovatore</Typography>
-      <Ionicons name="close" size={40} color={colors.red} />
+      <Typography variant="h1">il trovatore</Typography>
+      {/* <Ionicons name="close" size={40} color={colors.red} /> */}
+      <Flag />
     </Animated.View>
   );
 };

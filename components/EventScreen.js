@@ -10,7 +10,7 @@ import Button from "./layout/Button";
 import Container from "./layout/Container";
 import Fade from "./layout/Fade";
 import Heading from "./layout/Heading";
-import { StatusBarContext, StatusBarProvider } from "./lib/context";
+import { StatusBarContext } from "./lib/context";
 import { Menu } from "./menu/Menu";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Synopsis from "./Synopsis";
@@ -22,6 +22,7 @@ import { colors, padding } from "./styles/styles";
 import { scrollPosition } from "./lib/scrollPosition";
 import Partners from "./Partners";
 import FontSizePicker from "./FontSizePicker";
+import ScrollFlag from "./ScrollFlag";
 
 const menuItems = [
   {
@@ -60,6 +61,7 @@ const EventScreen = () => {
 
   const ani = useRef(new Animated.Value(1000)).current;
   const aniTwo = useRef(new Animated.Value(0.95)).current;
+  const scrollRef = useRef(null);
 
   useEffect(() => {
     setTimeout(() => {
@@ -82,6 +84,13 @@ const EventScreen = () => {
     }, 200);
   }, []);
 
+  const scrollToTop = () => {
+    scrollRef.current?.scrollTo({
+      y: 0,
+      animated: true,
+    });
+  };
+
   const handleBackButton = () => {
     toggleItem();
     setClose(true);
@@ -101,8 +110,10 @@ const EventScreen = () => {
   return (
     <>
       <StatusBar style={scrollPosition(scrollY, openItem)} />
-      <Container aniTwo={aniTwo} ani={ani}>
+      <ScrollFlag handlePress={scrollToTop} index={openItem} />
+      <Container ref={scrollRef} aniTwo={aniTwo} ani={ani}>
         <Heading />
+        <View style={{ height: 400, width: "200%" }} />
         <Menu
           onOpen={(val) => {
             setOpenItem(val);
@@ -122,8 +133,10 @@ const EventScreen = () => {
             isItemsOpen={openItem !== null ? true : false}
             onPress={handleBackButton}
             size="small"
+            fontSize={13}
           >
-            <Ionicons name="caret-back" size={18} color="white" />
+            <Ionicons name="caret-back" size={13} color="white" />
+            Back
           </Button>
         )}
         <Button isItemsOpen={openItem !== null ? true : false}>

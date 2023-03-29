@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     // margin: 0,
     // padding: 0,
     paddingVertical: 8,
-    color: colors.font,
+    color: colors.red,
   },
   caption: {
     fontFamily: "AGItalics",

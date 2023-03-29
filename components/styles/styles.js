@@ -4,6 +4,7 @@ export const colors = {
   red: "#E6454D",
   grey: "#6B707D",
   grey100: "#898D97",
+  grey50: "#FADADC",
 };
 
 export const padding = {

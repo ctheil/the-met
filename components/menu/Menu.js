@@ -123,7 +123,11 @@ export const MenuItem = ({
         <TouchableOpacity
           onLayout={(e) => {}}
           onPress={handleTap}
-          style={[styles.item, ,]}
+          style={[
+            styles.item,
+            // { backgroundColor: index % 2 ? colors.bg : colors.grey50 },
+            { backgroundColor: colors.bg },
+          ]}
         >
           {open === index && (
             <View
@@ -174,7 +178,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: colors.bg,
+    // backgroundColor: colors.bg,
     zIndex: 1,
   },
 });

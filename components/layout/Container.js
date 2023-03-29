@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import {
   Animated,
   SafeAreaView,
@@ -6,10 +6,11 @@ import {
   StyleSheet,
   View,
 } from "react-native";
+import Flag from "../Flag";
 import { StatusBarContext } from "../lib/context";
 import { colors, padding } from "../styles/styles";
 
-const Container = ({ children, ani, aniTwo }) => {
+const Container = React.forwardRef(({ children, ani, aniTwo }, ref) => {
   const marTop = useRef(new Animated.Value(60)).current;
   // const [offset, setOffset] = useState(null);
   const offset = useRef(new Animated.Value(0)).current;
@@ -24,8 +25,8 @@ const Container = ({ children, ani, aniTwo }) => {
   }, []);
 
   const headerHeight = offset.interpolate({
-    inputRange: [0, 60, 100],
-    outputRange: [60, 0, 0],
+    inputRange: [0, 60, 100], // start, max, clamp
+    outputRange: [60, 0, 0], // start, end, clamp
   });
 
   const handleScroll = ({ nativeEvent }) => {
@@ -39,6 +40,7 @@ const Container = ({ children, ani, aniTwo }) => {
 
   return (
     <Animated.ScrollView
+      ref={ref}
       onScroll={Animated.event(
         [{ nativeEvent: { contentOffset: { y: offset } } }],
         // {
@@ -67,12 +69,12 @@ const Container = ({ children, ani, aniTwo }) => {
         },
       ]}
     >
-      <View>{children}</View>
+      <View style={{ position: "relative" }}>{children}</View>
 
       <View style={styles.spacer} />
     </Animated.ScrollView>
   );
-};
+});
 
 const styles = StyleSheet.create({
   spacer: {
@@ -85,6 +87,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: padding.mainHorizontal,
     paddingTop: 12,
     borderRadius: 24,
+    position: "relative",
   },
 });
 
