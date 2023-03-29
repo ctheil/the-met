@@ -17,8 +17,13 @@ const Heading = (props) => {
       // }}
       style={[styles.headingBox, { height: props.height }, props.style]}
     >
-      <Typography variant="h1">il trovatore</Typography>
-      {/* <Ionicons name="close" size={40} color={colors.red} /> */}
+      <View style={{ alignItems: "center", flexDirection: "row", zIndex: 10 }}>
+        <Typography color={colors.bg} style={{ zIndex: 10 }} variant="h1">
+          il{" "}
+        </Typography>
+        <Typography variant="h1">trovatore</Typography>
+      </View>
+      <Ionicons name="close" size={40} color={colors.red} />
       <Flag />
     </Animated.View>
   );

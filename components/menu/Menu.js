@@ -38,6 +38,7 @@ export const Menu = ({
               key={item.index}
               handlePress={handlePress}
               open={open}
+              mode={item?.variant || null}
             >
               {item.title}
             </MenuItem>
@@ -61,6 +62,7 @@ export const MenuItem = ({
   onOpen,
   open,
   toggleItem,
+  mode,
 }) => {
   // const [pressed, setPressed] = useState(false);
   // useEffect(() => {
@@ -126,6 +128,7 @@ export const MenuItem = ({
           style={[
             styles.item,
             // { backgroundColor: index % 2 ? colors.bg : colors.grey50 },
+
             { backgroundColor: colors.bg },
           ]}
         >
@@ -147,6 +150,7 @@ export const MenuItem = ({
             />
           )}
           <Typography
+            color={index % 2 ? colors.grey : colors.font}
             variant={open === index ? "selectedMenuItem" : "menuItem"}
           >
             {children}
@@ -154,7 +158,7 @@ export const MenuItem = ({
           <Ionicons
             name={open === index ? "remove" : "add"}
             size={36}
-            color={colors.font}
+            color={index % 2 ? colors.grey : colors.font}
           />
         </TouchableOpacity>
         {open === index && component}
@@ -174,7 +178,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: padding.mainHorizontal / 2,
     borderBottomColor: colors.font,
     borderBottomWidth: 1,
-    paddingVertical: 4,
+    paddingVertical: 0,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",

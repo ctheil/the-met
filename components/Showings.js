@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { Menu, MenuItem } from "./menu/Menu";
 import Showing from "./Showing";
-import { padding } from "./styles/styles";
+import { colors, padding } from "./styles/styles";
 
 const toggleItem = () => {
   LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
@@ -115,7 +115,9 @@ const Showings = () => {
 const styles = StyleSheet.create({
   container: {
     zIndex: 0,
-    paddingHorizontal: padding.mainHorizontal + padding.mainHorizontal / 2,
+    backgroundColor: "#eee",
+    marginHorizontal: -padding.mainHorizontal,
+    paddingHorizontal: padding.mainHorizontal + padding.mainHorizontal * 2,
   },
 });
 

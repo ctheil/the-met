@@ -14,10 +14,10 @@ const styles = StyleSheet.create({
   flag: {
     position: "absolute",
     top: -12,
-    right: 15,
+    left: 13,
     width: 25,
     marginRight: 15,
-    height: 35,
+    height: 55,
     backgroundColor: colors.red,
   },
   flagTop: {

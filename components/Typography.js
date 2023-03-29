@@ -4,8 +4,15 @@ import { FontContext } from "./lib/context";
 import { colors } from "./styles/styles";
 import { bg, grey, red, white } from "./styles/typography-styles";
 
-export const Span = ({ variant, fontStyle, children }) => {
-  return <Text style={[styles[variant], styles[fontStyle]]}> {children} </Text>;
+export const Span = ({ variant, fontStyle, children, color }) => {
+  return (
+    <Text
+      style={[styles[variant], styles[fontStyle], { color: color && color }]}
+    >
+      {" "}
+      {children}{" "}
+    </Text>
+  );
 };
 
 const Typography = (props) => {

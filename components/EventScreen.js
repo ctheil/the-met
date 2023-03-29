@@ -4,6 +4,7 @@ import {
   Easing,
   LayoutAnimation,
   StyleSheet,
+  Text,
   View,
 } from "react-native";
 import Button from "./layout/Button";
@@ -23,12 +24,14 @@ import { scrollPosition } from "./lib/scrollPosition";
 import Partners from "./Partners";
 import FontSizePicker from "./FontSizePicker";
 import ScrollFlag from "./ScrollFlag";
+import Swipeable from "react-native-gesture-handler/Swipeable";
 
 const menuItems = [
   {
     index: 0,
     component: <Synopsis />,
     title: "Synopsis",
+    variant: "dark",
   },
   {
     index: 1,
@@ -39,6 +42,7 @@ const menuItems = [
     index: 2,
     component: <Cast />,
     title: "Cast",
+    variant: "dark",
   },
   {
     index: 3,
@@ -51,6 +55,14 @@ const menuItems = [
     title: "Partners",
   },
 ];
+
+const swipeLeft = () => {
+  return (
+    <View style={{ height: "100%" }}>
+      <Text>Back?</Text>
+    </View>
+  );
+};
 
 const EventScreen = () => {
   const { statusBar, setStatusBar, scrollY } = useContext(StatusBarContext);
@@ -102,6 +114,9 @@ const EventScreen = () => {
     setClose(false);
     setOpenItem(pressed ? index : null);
   };
+  const onSwipe = () => {
+    alert("swipe");
+  };
 
   const toggleItem = () => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
@@ -113,7 +128,8 @@ const EventScreen = () => {
       <ScrollFlag handlePress={scrollToTop} index={openItem} />
       <Container ref={scrollRef} aniTwo={aniTwo} ani={ani}>
         <Heading />
-        {/* <View style={{ height: 400, width: "200%" }} /> */}
+        {/* <View style={{ height: 500, width: "200%" }} /> */}
+        {/* <Swipeable leftContent={swipeLeft}> */}
         <Menu
           onOpen={(val) => {
             setOpenItem(val);
@@ -124,6 +140,7 @@ const EventScreen = () => {
           close={close}
           toggleItem={toggleItem}
         ></Menu>
+        {/* </Swipeable> */}
         {/* <FontSizePicker /> */}
       </Container>
       <Fade />

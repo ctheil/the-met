@@ -7,7 +7,7 @@ const Fade = ({ style }) => {
     <Animated.View style={[styles.container, style]}>
       <LinearGradient
         style={styles.fade}
-        colors={["rgba(0, 0, 0, 0)", "rgba(0, 0, 0, 0.3)"]}
+        colors={["rgba(0, 0, 0, 0)", "rgba(0, 0, 0, 0.5)"]}
       />
     </Animated.View>
     // </View>
