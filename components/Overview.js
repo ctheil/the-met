@@ -84,10 +84,17 @@ const Overview = ({ mountButton }) => {
         </View>
       </View>
       <View style={styles.showingsContainer}>
-        <Typography variant="p" color={colors.grey100}>
-          <Span variant="p" fontStyle="bold">
-            Next Showing:
-          </Span>{" "}
+        <Ionicons
+          style={{ marginBottom: 3, marginLeft: 2 }}
+          name="ios-calendar"
+          size={18}
+          color={colors.red}
+        />
+        <Typography
+          style={{ margin: 0, padding: 0 }}
+          variant="p"
+          color={colors.grey100}
+        >
           Friday March 17th. 7:00 PM
         </Typography>
       </View>
@@ -242,6 +249,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: padding.mainHorizontal,
     paddingTop: 8,
     paddingBottom: 16,
+    gap: 8,
+    flexDirection: "row",
+    alignItems: "center",
   },
   buttonContainer: {
     paddingVertical: 16,

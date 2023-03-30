@@ -6,7 +6,14 @@ import Typography from "../Typography";
 
 const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 
-const Button = ({ children, size, onPress, isItemsOpen, fontSize }) => {
+const Button = ({
+  children,
+  size,
+  onPress,
+  isItemsOpen,
+  fontSize,
+  variant,
+}) => {
   const { scrollY } = useContext(StatusBarContext);
   const [trigger, setTrigger] = useState(false);
   const translate = useRef(
@@ -98,9 +105,20 @@ const Button = ({ children, size, onPress, isItemsOpen, fontSize }) => {
           : isItemsOpen
           ? { borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }
           : null,
+        variant === "outlined"
+          ? {
+              backgroundColor: "transparent",
+              borderWidth: 2,
+              borderColor: colors.red,
+            }
+          : { backgroundColor: colors.red },
       ]}
     >
-      <Typography fontSize={fontSize && fontSize} variant="cta">
+      <Typography
+        color={variant === "outlined" ? colors.red : colors.bg}
+        fontSize={fontSize && fontSize}
+        variant="cta"
+      >
         {children}
       </Typography>
     </AnimatedTouchable>
@@ -112,7 +130,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 55,
     alignItems: "center",
-    backgroundColor: colors.red,
+    // backgroundColor: colors.red,
     paddingVertical: 10,
     borderRadius: 6,
     zIndex: 11,

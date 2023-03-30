@@ -35,7 +35,7 @@ export const Menu = ({
               }}
               component={item.component}
               index={item.index}
-              key={item.index}
+              key={item.title}
               handlePress={handlePress}
               open={open}
               mode={item?.variant || null}
