@@ -1,5 +1,6 @@
 export const colors = {
   bg: "#FCF7EF",
+  bgAlt: "#FCF7EF",
   font: "#091127",
   red: "#E6454D",
   grey: "#6B707D",
@@ -8,5 +9,5 @@ export const colors = {
 };
 
 export const padding = {
-  mainHorizontal: 48,
+  mainHorizontal: 36,
 };

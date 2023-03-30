@@ -115,9 +115,9 @@ const Showings = () => {
 const styles = StyleSheet.create({
   container: {
     zIndex: 0,
-    backgroundColor: "#eee",
+    backgroundColor: colors.bgAlt,
     marginHorizontal: -padding.mainHorizontal,
-    paddingHorizontal: padding.mainHorizontal + padding.mainHorizontal * 2,
+    paddingHorizontal: padding.mainHorizontal + padding.mainHorizontal,
   },
 });
 

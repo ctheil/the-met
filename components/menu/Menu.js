@@ -146,6 +146,7 @@ export const MenuItem = ({
                 left: -10,
                 right: -10,
                 top: 0,
+                paddingHorizontal: padding.mainHorizontal / 2,
               }}
             />
           )}
@@ -182,6 +183,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    // flex: 1,
     // backgroundColor: colors.bg,
     zIndex: 1,
   },

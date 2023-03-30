@@ -68,7 +68,7 @@ const swipeLeft = () => {
 const EventScreen = () => {
   const { statusBar, setStatusBar, scrollY } = useContext(StatusBarContext);
 
-  const [openItems, setOpenItems] = useState([]);
+  const [mountButton, setMountButton] = useState(false);
   const [openItem, setOpenItem] = useState(null);
   const [close, setClose] = useState(false);
 
@@ -96,6 +96,14 @@ const EventScreen = () => {
       ]).start();
     }, 200);
   }, []);
+  console.log(scrollY);
+  useEffect(() => {
+    if (scrollY >= 550) {
+      setMountButton(true);
+    } else {
+      setMountButton(false);
+    }
+  }, [scrollY]);
 
   const scrollToTop = () => {
     scrollRef.current?.scrollTo({
@@ -129,7 +137,7 @@ const EventScreen = () => {
       <ScrollFlag handlePress={scrollToTop} index={openItem} />
       <Container ref={scrollRef} aniTwo={aniTwo} ani={ani}>
         <Heading />
-        <Overview />
+        <Overview mountButton={mountButton} />
         {/* <Swipeable leftContent={swipeLeft}> */}
         <Menu
           onOpen={(val) => {
@@ -146,22 +154,24 @@ const EventScreen = () => {
       </Container>
       <Fade />
 
-      <View style={styles.fixedContainer}>
-        {openItem !== null && (
-          <Button
-            isItemsOpen={openItem !== null ? true : false}
-            onPress={handleBackButton}
-            size="small"
-            fontSize={13}
-          >
-            <Ionicons name="caret-back" size={13} color="white" />
-            Back
+      {mountButton && (
+        <View style={styles.fixedContainer}>
+          {openItem !== null && (
+            <Button
+              isItemsOpen={openItem !== null ? true : false}
+              onPress={handleBackButton}
+              size="small"
+              fontSize={13}
+            >
+              <Ionicons name="caret-back" size={13} color="white" />
+              Back
+            </Button>
+          )}
+          <Button isItemsOpen={openItem !== null ? true : false}>
+            Purchase Tickets
           </Button>
-        )}
-        <Button isItemsOpen={openItem !== null ? true : false}>
-          Purchase Tickets
-        </Button>
-      </View>
+        </View>
+      )}
     </>
   );
 };

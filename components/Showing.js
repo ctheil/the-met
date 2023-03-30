@@ -120,7 +120,9 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     gap: 6,
-    flex: 1,
+    flex: 0.5,
+    flexGrow: 0.5,
+    marginLeft: 70,
   },
   statText: {
     fontFamily: "AGBold",
@@ -136,13 +138,14 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
   },
   container: {
-    // paddingHorizontal: -30,
+    // paddingHorizontal: 30,
     paddingVertical: 24,
     flex: 1,
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "center",
     gap: 13,
-    alignItems: "flex-start",
+    // alignItems: "center",
+
     width: "100%",
     flexWrap: "wrap",
   },
@@ -161,6 +164,8 @@ const styles = StyleSheet.create({
   timeline: {
     position: "relative",
     flexDirection: "column",
+    flex: 0.5,
+    flexGrow: 0.5,
     // gap: 24,
   },
   text: {
@@ -184,7 +189,7 @@ const styles = StyleSheet.create({
     width: 1,
 
     left: "50%",
-    transform: [{ translateX: -15 }],
+    transform: [{ translateX: 1 }],
     backgroundColor: colors.red,
   },
   lineBox: {

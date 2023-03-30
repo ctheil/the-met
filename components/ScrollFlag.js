@@ -20,17 +20,29 @@ const ScrollFlag = ({ index, handlePress }) => {
   const { scrollY } = useContext(StatusBarContext);
   const [open, setOpen] = useState(false);
   const translate = useRef(new Animated.Value(-200)).current;
+  const [flag, setFlag] = useState(index);
+  const [close, setClose] = useState(false);
 
+  console.log(flag, open);
   useEffect(() => {
-    if (
-      (scrollY >= 140 && index === 0) ||
-      (scrollY >= 206 && index === 1) ||
-      (scrollY >= 261 && index === 2) ||
-      (scrollY >= 245 && index === 3)
+    if (scrollY >= 68 && scrollY <= 1033 && !close) {
+      setFlag(null);
+      setOpen(true);
+    } else if (
+      (scrollY >= 1520 && index === 0) ||
+      (scrollY >= 1583 && index === 1) ||
+      (scrollY >= 1664 && index === 2) ||
+      (scrollY >= 1701 && index === 3 && !close)
     ) {
+      setFlag(index);
       setOpen(true);
     } else {
       setOpen(false);
+    }
+    if (close) {
+      setTimeout(() => {
+        setClose(false);
+      }, 500);
     }
   }, [scrollY]);
 
@@ -51,19 +63,20 @@ const ScrollFlag = ({ index, handlePress }) => {
   }, [open]);
 
   return (
-    // <View style={styles.main}>
     <AnimatedTouchable
-      onPress={handlePress}
+      onPress={() => {
+        handlePress();
+        setOpen(false);
+        setClose(true);
+      }}
       style={[styles.container, { transform: [{ translateX: translate }] }]}
     >
-      {/* <View style={styles.flagTop} /> */}
       <Typography style={{ letterSpacing: 1.2 }} variant="h3" color="white">
         <Ionicons name="caret-up" size={21} color={colors.bg} />
-        {textKeys[index]}
+        {textKeys[flag]}
       </Typography>
       <View style={styles.flagBottom} />
     </AnimatedTouchable>
-    // </View>
   );
 };
 
@@ -85,7 +98,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.red,
     zIndex: 100,
     paddingHorizontal: 16,
-    paddingLeft: 36,
+    paddingLeft: 44,
     paddingVertical: 4,
   },
   // flagTop: {
@@ -105,9 +118,9 @@ const styles = StyleSheet.create({
     // height: "100%",
     borderRightWidth: 10,
     borderRightColor: "transparent",
-    borderTopWidth: 16.8,
+    borderTopWidth: 16.7,
     borderTopColor: colors.red,
-    borderBottomWidth: 16.8,
+    borderBottomWidth: 16.7,
     borderBottomColor: colors.red,
   },
 });

@@ -164,7 +164,7 @@ const Synopsis = () => {
       {items.map((item, index) => (
         <>
           <Animated.View
-            key={`${item}_${index}`}
+            key={`${item.header}_${index}_heading`}
             style={[
               [styles.heading],
               { transform: [{ translateY: translate }, { scale: scale }] },
@@ -193,6 +193,7 @@ const Synopsis = () => {
             </Text>
           </Animated.View>
           <Animated.View
+            key={`${item.header}_${index}_image`}
             style={[
               styles.imageBox,
 
@@ -218,17 +219,13 @@ const Synopsis = () => {
               </View>
             )}
           </Animated.View>
-          <Animated.View style={[styles.p, { opacity: opacity }]}>
-            <Animated.View
-              style={[styles.p, { opacity: opacity }]}
-              key={`paragraph_${index}`}
-            >
+          <Animated.View
+            key={`${item.header}_${index}_paragraphs`}
+            style={[styles.p, { opacity: opacity }]}
+          >
+            <Animated.View style={[styles.p, { opacity: opacity }]}>
               {item.paragraphs.map((paragraph, index) => (
-                <Typography
-                  color={colors.grey50}
-                  key={`paragraph_${index}`}
-                  variant="p"
-                >
+                <Typography color={colors.grey50} key={index} variant="p">
                   {paragraph}
                 </Typography>
               ))}
@@ -244,7 +241,7 @@ const Synopsis = () => {
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: -padding.mainHorizontal,
-    paddingHorizontal: padding.mainHorizontal,
+    paddingHorizontal: padding.mainHorizontal + padding.mainHorizontal * 0.5,
     backgroundColor: "#000",
     // alignItems: "center",
   },
