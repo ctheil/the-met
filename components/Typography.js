@@ -18,9 +18,8 @@ export const Span = ({ variant, fontStyle, children, color }) => {
 const Typography = (props) => {
   // const [variant, fontSize, color] = props;
   const { rem, setRem } = useContext(FontContext);
-
   const fontSize = {
-    p: 13 * rem,
+    p: 15 * rem,
     h1: 40 * rem,
     h2: 21 * rem,
     h3: 21 * rem,
@@ -28,7 +27,7 @@ const Typography = (props) => {
     em: 24 * rem,
     menuItem: 36 * rem,
     selectedMenuItem: 35 * rem,
-    caption: 13 * rem,
+    caption: 15 * rem,
   };
 
   const mode = props.mode || "light";
@@ -46,7 +45,7 @@ const Typography = (props) => {
               ? props.weight
               : styles[variant].fontFamily,
           color: props.color || styles[variant].color,
-          fontSize: props.fontSize * rem || fontSize[variant],
+          fontSize: props.fontSize || fontSize[variant],
           textTransform: props.textTransform || styles[variant].textTransform,
         },
       ]}
@@ -92,9 +91,9 @@ const styles = StyleSheet.create({
   },
   p: {
     fontFamily: "AGMedium",
-    fontSize: 13,
+    fontSize: 15,
     // color: mode === "light" ? colors.grey : colors.grey100,
-    lineHeight: 22,
+    lineHeight: 26,
   },
   menuItem: {
     fontFamily: "AGBook",
@@ -114,7 +113,7 @@ const styles = StyleSheet.create({
   },
   caption: {
     fontFamily: "AGItalics",
-    fontSize: 13,
+    fontSize: 15,
     color: colors.red,
   },
   // FONT STYLES

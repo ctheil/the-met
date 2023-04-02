@@ -1,6 +1,8 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import CastItem from "./CastItem";
 import { colors, padding } from "./styles/styles";
+import { Blurhash } from "react-native-blurhash";
+import { decodeBlurHash } from "fast-blurhash";
 
 const castArr = [
   {
@@ -16,6 +18,7 @@ const castArr = [
     ],
     imgPath:
       "https://www.rsb-online.de/wp-content/uploads/Armiliato-Marco-credit-Ifkovitz-4_1920x2560.jpg",
+    placeholder: "",
   },
   {
     name: "Anna Netrebko",
@@ -84,6 +87,10 @@ const castArr = [
     ],
   },
 ];
+
+for (let i = 0; i < castArr.length; i++) {
+  castArr[i].placeholder = decodeBlurHash(castArr[i].imgPath, 32, 32);
+}
 
 const Cast = () => {
   return (

@@ -4,6 +4,7 @@ import { StyleSheet, View } from "react-native";
 import Typography from "./Typography";
 import Fade from "./layout/Fade";
 import { colors, padding } from "./styles/styles";
+import { decodeBlurHash } from "fast-blurhash";
 
 // CastItem component to display the cast members in the Cast component
 
@@ -19,6 +20,7 @@ const CastItem = ({ cast, index }) => {
           source={{ uri: cast.imgPath }}
           width={500}
           height={700}
+          placeholder="|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj["
         />
         <LinearGradient
           style={styles.imgFade}

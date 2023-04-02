@@ -26,6 +26,7 @@ import FontSizePicker from "./FontSizePicker";
 import ScrollFlag from "./ScrollFlag";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import Overview from "./Overview";
+import { Span } from "./Typography";
 
 const menuItems = [
   {
@@ -65,7 +66,7 @@ const swipeLeft = () => {
   );
 };
 
-const EventScreen = () => {
+const EventScreen = ({ date }) => {
   const { statusBar, setStatusBar, scrollY } = useContext(StatusBarContext);
 
   const [mountButton, setMountButton] = useState(false);
@@ -98,7 +99,7 @@ const EventScreen = () => {
   }, []);
   console.log(scrollY);
   useEffect(() => {
-    if (scrollY >= 550) {
+    if (scrollY >= 640) {
       setMountButton(true);
     } else {
       setMountButton(false);
@@ -131,13 +132,14 @@ const EventScreen = () => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     // setExpanded(!expanded)
   };
+
   return (
     <>
       <StatusBar style={scrollPosition(scrollY, openItem)} />
       <ScrollFlag handlePress={scrollToTop} index={openItem} />
       <Container ref={scrollRef} aniTwo={aniTwo} ani={ani}>
         <Heading />
-        <Overview mountButton={mountButton} />
+        <Overview date={date} mountButton={mountButton} />
         {/* <Swipeable leftContent={swipeLeft}> */}
         <Menu
           onOpen={(val) => {

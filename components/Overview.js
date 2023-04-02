@@ -1,5 +1,5 @@
 import { Image } from "expo-image";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import overviewImage from "../assets/images/overview.png";
 import Fade from "./layout/Fade";
@@ -7,6 +7,7 @@ import { colors, padding } from "./styles/styles";
 import Typography, { Span } from "./Typography";
 import { Ionicons } from "@expo/vector-icons";
 import Button from "./layout/Button";
+import Countdown from "react-countdown";
 
 const attending = [
   {
@@ -31,12 +32,25 @@ const attending = [
   },
 ];
 
-const Overview = ({ mountButton }) => {
+const Overview = ({ mountButton, date }) => {
   const [selected, setSelected] = useState({
     bookMark: false,
     share: false,
     heart: false,
   });
+  const [expired, setExpired] = useState(false);
+  const renderer = ({ minutes, seconds, completed }) => {
+    if (completed) {
+      setExpired(true);
+      return "Offer expired";
+    } else {
+      return (
+        <Span variant="p" fontStyle="bold" color={colors.red}>
+          {minutes}:{seconds} minutes
+        </Span>
+      );
+    }
+  };
   const iconSize = 24;
 
   const handlePress = (type) => {
@@ -197,7 +211,31 @@ const Overview = ({ mountButton }) => {
         ))}
       </View>
       <View style={styles.buttonContainer}>
-        {!mountButton && <Button>Purchase Tickets</Button>}
+        {!mountButton ? (
+          <Button>Purchase Tickets</Button>
+        ) : (
+          <View style={{ flex: 1 }}>
+            {expired ? (
+              <View style={{ opacity: 0.5 }}>
+                <Typography color={colors.bg} fontSize={15} variant="p">
+                  <Span variant="p" color={colors.red} fontStyle="bold">
+                    00:00
+                  </Span>
+                  20% off Offer Expired
+                </Typography>
+              </View>
+            ) : (
+              <Typography color={colors.bg} fontSize={15} variant="p">
+                Purchase in the next{" "}
+                <Countdown date={date} renderer={renderer} /> for
+                <Span variant="p" color={colors.red}>
+                  20%
+                </Span>
+                off
+              </Typography>
+            )}
+          </View>
+        )}
       </View>
     </View>
   );

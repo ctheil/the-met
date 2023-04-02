@@ -17,7 +17,7 @@ const Button = ({
   const { scrollY } = useContext(StatusBarContext);
   const [trigger, setTrigger] = useState(false);
   const translate = useRef(
-    new Animated.Value(size === "small" ? 20 : -10)
+    new Animated.Value(size === "small" ? 20 : -20)
   ).current;
   const scale = useRef(new Animated.Value(1)).current;
 
@@ -111,7 +111,7 @@ const Button = ({
               borderWidth: 2,
               borderColor: colors.red,
             }
-          : { backgroundColor: colors.red },
+          : null,
       ]}
     >
       <Typography
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 55,
     alignItems: "center",
-    // backgroundColor: colors.red,
+    backgroundColor: colors.red,
     paddingVertical: 10,
     borderRadius: 6,
     zIndex: 11,

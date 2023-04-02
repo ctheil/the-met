@@ -5,6 +5,8 @@ import { useCallback, useState } from "react";
 import { FontProvider, StatusBarProvider } from "./components/lib/context";
 import EventScreen from "./components/EventScreen";
 import splash from "./assets/images/public/splash.png";
+import { Span } from "./components/Typography";
+import { colors } from "./components/styles/styles";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -30,6 +32,8 @@ export default function App() {
     return null;
   }
 
+  const date = Date.now() + 200000;
+
   return (
     <ImageBackground
       source={splash}
@@ -38,7 +42,7 @@ export default function App() {
     >
       <StatusBarProvider>
         <FontProvider>
-          <EventScreen />
+          <EventScreen date={date} />
         </FontProvider>
       </StatusBarProvider>
     </ImageBackground>

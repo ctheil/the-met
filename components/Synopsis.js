@@ -2,10 +2,10 @@ import { Image } from "expo-image";
 import { Animated, Easing, StyleSheet, Text, View } from "react-native";
 import { colors, padding } from "./styles/styles";
 import Typography, { Span } from "./Typography";
-import imageOne from "../assets/images/Group_Swords_Trovatore_2271-s.jpg";
-import imageTwo from "../assets/images/the-gypsy.jpg";
-import imageThree from "../assets/images/son2.jpeg";
-import imageFour from "../assets/images/execution.jpeg";
+import imageOne from "../assets/images/actI.png";
+import imageTwo from "../assets/images/actII.png";
+import imageThree from "../assets/images/actIII.png";
+import imageFour from "../assets/images/actIV.png";
 import { useEffect, useRef, useState } from "react";
 import Divider from "./layout/Divider";
 import Swipeable from "react-native-gesture-handler/Swipeable";
@@ -24,12 +24,14 @@ const items = [
       },
       transition: 250,
       width: "100%",
-      height: 900,
+      height: 1000,
+      placeholder:
+        "|26@.n0201?G%M9G4:~pD+Rj9b?Zs.Ip%1WAWCRk00?H^*D*9a^*-:4:%L9a^%9GkC-o9at7oextxu%09aog?ZE2ayxaRk^*9at7xaV@%Lk9s:IV%0E2-pt6IVt7WBxaWBxtt7V[IoNH%KIpRk%10Mxut6oeayWAxaIos:",
     },
-    caption: [
-      "Yonghoon Lee as Manrico at the Met: Il Trovatore (2016).",
-      "Photo: Marty Sohl/Metropolitan Opera.",
-    ],
+    // caption: [
+    //   "Yonghoon Lee as Manrico at the Met: Il Trovatore (2016).",
+    //   "Photo: Marty Sohl/Metropolitan Opera.",
+    // ],
     paragraphs: [
       <Span color={colors.grey100} variant="p" fontStyle="bold">
         Spain, early 19th century, during the Peninsular War.
@@ -51,7 +53,8 @@ const items = [
     image: imageTwo,
     imageProps: {
       width: "100%",
-      height: 500,
+      height: 1000,
+      contentPosition: { top: 0, right: "45%" },
     },
 
     paragraphs: [
@@ -78,7 +81,7 @@ const items = [
     image: imageThree,
     imageProps: {
       width: "100%",
-      height: 500,
+      height: 1000,
       contentPosition: { top: 0, right: "70%" },
     },
 
@@ -97,7 +100,7 @@ const items = [
     image: imageFour,
     imageProps: {
       width: "100%",
-      height: 500,
+      height: 1000,
       contentPosition: { top: 0, right: "70%" },
     },
 
