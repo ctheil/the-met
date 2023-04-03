@@ -1,4 +1,7 @@
-# type2_p3
+# Typography II: Typography and Technology
+This is a university project that ideates the additional mobile app components to be added to the Metropolitan Opera's Mobile Application. This project utilizes React Native and Expo to develop a seamless interface for regular attendees at the Met Opera. 
+
+## Installation: 
 1. Make sure you have Node.js installed on your machine. You can download it here: https://nodejs.org/en/download
 	1. To check that node was successfully installed, or to check if it is already installed, open the terminal (see #4 for instructions on opening the terminal) and use this command: `node --version` a version number should be returned, or an error will be thrown if it was not installed properly.
 2. Visit [www.github.com/ctheil/type2_p3](https://github.com/ctheil/type2_p3)
