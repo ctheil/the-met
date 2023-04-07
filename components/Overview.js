@@ -7,7 +7,7 @@ import { colors, padding } from "./styles/styles";
 import Typography, { Span } from "./Typography";
 import { Ionicons } from "@expo/vector-icons";
 import Button from "./layout/Button";
-import Countdown from "react-countdown";
+import Countdown, { zeroPad } from "react-countdown";
 
 const attending = [
   {
@@ -46,7 +46,7 @@ const Overview = ({ mountButton, date }) => {
     } else {
       return (
         <Span variant="p" fontStyle="bold" color={colors.red}>
-          {minutes}:{seconds} minutes
+          {zeroPad(minutes)}:{zeroPad(seconds)} minutes
         </Span>
       );
     }
@@ -60,16 +60,20 @@ const Overview = ({ mountButton, date }) => {
     <View style={[styles.container]}>
       <View style={styles.imageContainer}>
         <Image
-          transition={1000}
+          transition={3000}
           source={overviewImage}
           height={600}
           width={"100%"}
           style={styles.image}
           contentPosition={{ top: 0, right: "10%" }}
+          placeholder={
+            "|47,rh5R;K-pOY9ZIq-p9uNx=wR*xY-UNGs.S5R+0M^Ob^Vssl-oW.E3xt}q9^=xj[EMs:NIoIRmxYWEagS2r?NxxGn$NH9b-US6RQWUt7s.Ip%1soNHt6a#NHxDR,ofayxuM|WAtRxGM{f+%2E2xut3IVxtxtM|ockWs."
+          }
         />
         <Fade variant="total" />
         <View style={styles.headingContainer}>
           <Typography
+            indent={false}
             style={{ marginBottom: 4 }}
             color={colors.bg}
             variant="h2"
@@ -79,6 +83,7 @@ const Overview = ({ mountButton, date }) => {
             Experience the
           </Typography>
           <Typography
+            indent={false}
             style={{ margin: 0, padding: 0 }}
             color={colors.red}
             variant="h1"
@@ -227,7 +232,8 @@ const Overview = ({ mountButton, date }) => {
             ) : (
               <Typography color={colors.bg} fontSize={15} variant="p">
                 Purchase in the next{" "}
-                <Countdown date={date} renderer={renderer} /> for
+                <Countdown date={date} renderer={renderer} />
+                for{" "}
                 <Span variant="p" color={colors.red}>
                   20%
                 </Span>

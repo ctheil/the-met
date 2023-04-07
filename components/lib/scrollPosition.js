@@ -2,19 +2,19 @@ export const scrollPosition = (scrollY, index) => {
   let mode = "light";
   // synopsis
   if (index === 0) {
-    if (scrollY > 1436 && scrollY < 1496) {
+    if (scrollY > 1509 && scrollY < 1570) {
       mode = "dark";
     }
   } else if (index === 1) {
-    if (scrollY > 1435) {
+    if (scrollY > 1509) {
       mode = "dark";
     }
   } else if (index === 2) {
-    if (scrollY > 1435 && scrollY < 1640) {
+    if (scrollY > 1509 && scrollY < 1714) {
       mode = "dark";
     }
   } else if (index === 3) {
-    if ((scrollY > 1435 && scrollY < 2168) || scrollY > 2474) {
+    if ((scrollY > 1509 && scrollY < 2254) || scrollY > 2551) {
       mode = "dark";
     }
   }

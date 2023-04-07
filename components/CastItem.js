@@ -19,6 +19,7 @@ const CastItem = ({ cast, index }) => {
           }}
           source={{ uri: cast.imgPath }}
           width={500}
+          r
           height={700}
           placeholder="|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj["
         />
@@ -64,6 +65,7 @@ const CastItem = ({ cast, index }) => {
         {cast.bio &&
           cast.bio.map((bio, index) => (
             <Typography
+              indent={index != 0}
               style={index != 0 ? { paddingVertical: 12 } : null}
               color={colors.grey100}
               variant="p"

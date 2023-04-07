@@ -86,21 +86,21 @@ const Creators = () => {
           of today’s repertoire.
         </Typography>
         <Typography variant="p">
-          <Span fontStyle="bold">Francesco Maria Piave</Span> (1810–76) was
+          <Span fontStyle="bold">Francesco Maria Piave</Span>(1810–76) was
           Verdi’s librettist during his productive middle period and also worked
           with him on{" "}
           <Span fontStyle="italics">Ernani, Macbeth, Rigoletto,</Span>
-          and <Span fontStyle="italics">La Forza del Destino</Span>, among
+          and <Span fontStyle="italics">La Forza del Destino,</Span>among
           others.{" "}
         </Typography>
         <Typography variant="p">
-          <Span fontStyle="bold">Alexandre Dumas fils</Span> (1824–95) was the
+          <Span fontStyle="bold">Alexandre Dumas fils</Span>(1824–95) was the
           son of the author of{" "}
           <Span fontStyle="italics">The Three Musketeers.</Span>
         </Typography>
         <Typography variant="p">
-          The play <Span fontStyle="italics">La Dame aux Camélias</Span> is
-          based on his own semi-autobiographical novel of the same name.
+          The play <Span fontStyle="italics">La Dame aux Camélias</Span>is based
+          on his own semi-autobiographical novel of the same name.
         </Typography>
       </View>
       <View style={styles.additionalText}>

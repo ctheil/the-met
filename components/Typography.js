@@ -9,7 +9,6 @@ export const Span = ({ variant, fontStyle, children, color }) => {
     <Text
       style={[styles[variant], styles[fontStyle], { color: color && color }]}
     >
-      {" "}
       {children}{" "}
     </Text>
   );
@@ -32,7 +31,28 @@ const Typography = (props) => {
 
   const mode = props.mode || "light";
   const { variant } = props;
-  return (
+  return variant === "p" && props?.indent ? (
+    <Text
+      style={[
+        { ...props.style },
+        styles[variant],
+        {
+          fontFamily:
+            props.fontStyle === "italics"
+              ? "AGItalics"
+              : props?.weight
+              ? props.weight
+              : styles[variant].fontFamily,
+          color: props.color || styles[variant].color,
+          fontSize: props.fontSize || fontSize[variant],
+          textTransform: props.textTransform || styles[variant].textTransform,
+        },
+      ]}
+    >
+      {"\t"}
+      {props.children}
+    </Text>
+  ) : (
     <Text
       style={[
         { ...props.style },
@@ -91,7 +111,6 @@ const styles = StyleSheet.create({
   },
   p: {
     fontFamily: "AGMedium",
-    fontSize: 15,
     // color: mode === "light" ? colors.grey : colors.grey100,
     lineHeight: 26,
   },

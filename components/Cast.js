@@ -18,7 +18,6 @@ const castArr = [
     ],
     imgPath:
       "https://www.rsb-online.de/wp-content/uploads/Armiliato-Marco-credit-Ifkovitz-4_1920x2560.jpg",
-    placeholder: "",
   },
   {
     name: "Anna Netrebko",
@@ -39,7 +38,7 @@ const castArr = [
     role: "AZUCENA",
     performing: "March 17, 18",
     imgPath:
-      "https://www.washingtonpost.com/rf/image_1484w/2010-2019/WashingtonPost/2015/02/06/Style/Images/Dolora%20Zajick3%20color%20-%20David%20Sauer.jpg?t=20170517",
+      "https://www.opera.co.uk/wp-content/uploads/2020/07/Dolora-Zajick-c-John-Francis-Bourke.jpg",
     heading: "A Powerful Force in the Met Opera's Il Trovatore",
     subHead: "Experience the Mezzo-Soprano's Electrifying Presence on Stage",
     bio: [
@@ -52,7 +51,7 @@ const castArr = [
     role: "MANRICO",
     performing: "March 17, 18",
     imgPath:
-      "https://zemskygreenartists.com/wp-content/uploads/2022/04/Yonghoon-Lee.jpg",
+      "https://image.pbs.org/video-assets/7qRtYdv-asset-mezzanine-16x9-lGNqE9n.jpg",
     heading: "A Tenor's Triumph in Verdi's Masterpiece",
     subHead: "Experience the Tenor's Spellbinding Performance on Stage",
     bio: [
@@ -65,7 +64,7 @@ const castArr = [
     role: "DI LUNA",
     performing: "March 17, 18",
     imgPath:
-      "https://franceintheus.org/local/cache-vignettes/L729xH433/dmitri-hvorostovsky-40e18.jpg?1674956862",
+      "https://images.thestar.com/1Kpqa_N-u1K62d2m2xwqU3TMLPg=/1200x800/smart/filters:cb(2700061000):format(webp)/https://www.thestar.com/content/dam/thestar/entertainment/music/2017/11/22/opera-great-dmitri-hvorostovsky-dies-at-age-55/dmitri_hvorostovsky.jpg",
     heading: "A Baritone's Command in Verdi's Timeless Tale",
     subHead:
       "Witness the Late Baritone's Legacy through His Unforgettable Performance",
