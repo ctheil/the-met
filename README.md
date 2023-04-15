@@ -1,6 +1,7 @@
 # The Met Opera Mobile Application
+![type2_p3--presentation--imgs 005](https://user-images.githubusercontent.com/86980706/232248801-dc6005c3-a414-45e2-a9ec-d9feaec7c0d1.jpeg)
 
-## Spring 2023: Advanced Typography: Typography and Technology
+## Spring 2023: Advanced Typography- Typography and Technology
 This is a university project that ideates the additional mobile app components to be added to the Metropolitan Opera's Mobile Application. This project utilizes React Native and Expo to develop a seamless interface for regular attendees at the Met Opera. 
 
 
