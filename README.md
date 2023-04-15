@@ -1,7 +1,8 @@
 # Typography II: Typography and Technology
 This is a university project that ideates the additional mobile app components to be added to the Metropolitan Opera's Mobile Application. This project utilizes React Native and Expo to develop a seamless interface for regular attendees at the Met Opera. 
 
-![12 - iPhone 13 Pro - Isometric Style -- small](https://user-images.githubusercontent.com/86980706/232245895-ffda5387-e360-4366-a0b2-1bcca955a2be.png)
+![Scene 14--smallV2](https://user-images.githubusercontent.com/86980706/232246118-bf3bb049-29d1-4a06-8d2a-3cecee2c0ea9.png)
+
 
 
 ## Installation: 
