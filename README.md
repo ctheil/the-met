@@ -20,7 +20,7 @@ This is a university project that ideates the additional mobile app components t
 `cd ~/documents/type2_p3` 
 followed by enter key
 
-### Desktop Folder
+### Desktop Folder:
 `cd ~/desktop/type2_p3` 
 followed by the enter key
 
@@ -28,7 +28,7 @@ The above commands move the current directory into the project folder. You can c
 
 Next, you will need to install the project's dependencies using NPM. Assuming node was properly installed run this command 
 
-### Instaling Dependencies
+### Instaling Dependencies:
 >`npm install`
 >followed by the enter key
 
@@ -36,7 +36,7 @@ Next, you will need to install the project's dependencies using NPM. Assuming no
 
 Assuming the dependencies were correctly installed, you will next need to install xcode CLI. This should be simple and straight forward:
 
-### Installing XCode
+### Installing XCode:
 >run `npm run ios` to initiate a server, however, this should throw an error or warning in the terminal saying xcode is required. Follow the instructions to install xcode.
 
 Once Xcode is installed, you should be able to run `npm run ios` again to fully start the server and interact with the app. If you would like (what I prefer) is to download the Expo Go app for iPhone to preview the application directly on your phone. Download the app on your phone, then run `npm run ios` in your terminal. You will see a QR code in the terminal window. Scan this QR code with the default iphone camera app. This will open Expo Go and begin to boot the app on your phone. 
