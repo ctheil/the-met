@@ -15,7 +15,7 @@ This is a university project that ideates the additional mobile app components t
 followed by enter key
 
 >[!Desktop Folder: ]
-`cd~/desktop/type2_p3` 
+`cd ~/desktop/type2_p3` 
 followed by the enter key
 
 The above commands move the current directory into the project folder. You can check that you are in the correct folder by running `ls` which will return the folders contents. You should see folders like `assets` and `components`. 
