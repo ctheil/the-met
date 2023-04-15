@@ -1,6 +1,9 @@
 # Typography II: Typography and Technology
 This is a university project that ideates the additional mobile app components to be added to the Metropolitan Opera's Mobile Application. This project utilizes React Native and Expo to develop a seamless interface for regular attendees at the Met Opera. 
 
+![12 - iPhone 13 Pro - Isometric Style -- small](https://user-images.githubusercontent.com/86980706/232245895-ffda5387-e360-4366-a0b2-1bcca955a2be.png)
+
+
 ## Installation: 
 1. Make sure you have Node.js installed on your machine. You can download it here: https://nodejs.org/en/download
 	1. To check that node was successfully installed, or to check if it is already installed, open the terminal (see #4 for instructions on opening the terminal) and use this command: `node --version` a version number should be returned, or an error will be thrown if it was not installed properly. If an error is thrown, try quitting and reopening the terminal and rerunning `node -v` or `node --version`
