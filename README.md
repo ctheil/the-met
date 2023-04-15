@@ -1,9 +1,10 @@
+# The Met Opera Mobile Application
+
 # Typography II: Typography and Technology
 This is a university project that ideates the additional mobile app components to be added to the Metropolitan Opera's Mobile Application. This project utilizes React Native and Expo to develop a seamless interface for regular attendees at the Met Opera. 
 
-![Scene 14--smallV2](https://user-images.githubusercontent.com/86980706/232246118-bf3bb049-29d1-4a06-8d2a-3cecee2c0ea9.png)
 
-
+![Scene 14V2](https://user-images.githubusercontent.com/86980706/232247184-96a88aa0-0806-439e-af9a-350e4b23aef2.png)
 
 ## Installation: 
 1. Make sure you have Node.js installed on your machine. You can download it here: https://nodejs.org/en/download
