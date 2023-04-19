@@ -11,7 +11,7 @@ This is a university project that ideates the additional mobile app components t
 ## Installation: 
 1. Make sure you have Node.js installed on your machine. You can download it here: https://nodejs.org/en/download
 	1. To check that node was successfully installed, or to check if it is already installed, open the terminal (see #4 for instructions on opening the terminal) and use this command: `node --version` a version number should be returned, or an error will be thrown if it was not installed properly. If an error is thrown, try quitting and reopening the terminal and rerunning `node -v` or `node --version`
-2. Visit [www.github.com/ctheil/type2_p3](https://github.com/ctheil/type2_p3)
+2. Visit [www.github.com/ctheil/the-met](https://github.com/ctheil/type2_p3)
 	1. Click the green "Code" button and click **Download Zip**
 3. Extract the folder into your desktop or documents folder.
 4. Open the terminal (press CMD + Space and search "Terminal")
